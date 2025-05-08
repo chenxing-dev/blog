@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="#" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <main class="container mx-auto px-4 py-8">
+      <nav class="mb-8">
+        <a href="/blog" class="text-2xl font-bold text-gray-600">TechBytes</a>
+      </nav>
+      <slot />
+    </main>
+  </body>
+</html>
