@@ -3,6 +3,7 @@
 title: "Boost Arch Linux Download Speeds with Reflector: A Mirror Optimization Guide"
 description: "Learn how to dramatically improve pacman download speeds by automating optimal mirror selection with Reflector on Arch Linux."
 tags: ["arch linux", "reflector", "optimization", "system administration", "pacman"]
+date: 2025-05-10
 ---
 
 
@@ -32,7 +33,7 @@ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 
 ### 2. Generate new mirrorlist
 ```bash
-sudo reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --protocol https --latest 40 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 **Flag Breakdown**:
@@ -44,30 +45,10 @@ sudo reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mir
 ## **Verification & Testing**
 
 ### Check Mirror Performance
+
+Install the `rankmirros` AUR package. Read more: [Manual AUR Package Install](./manual-aur-package-install)
+
 ```bash
-sudo pacman -S rankmirrors
-rankmirrors -n 5 /etc/pacman.d/mirrorlist
+rankmirrors -n 0 /etc/pacman.d/mirrorlist
 ```
 
-## **Pro Tips**
-
-1. **Combine with Pacman Hook**  
-   Update mirrors before each upgrade:
-   ```bash
-   sudo nano /etc/pacman.d/hooks/mirrorupgrade.hook
-   ```
-   ```ini
-   [Trigger]
-   Operation = Upgrade
-   
-   [Action]
-   Description = Updating mirrorlist...
-   When = PreTransaction
-   Exec = /usr/bin/reflector --save /etc/pacman.d/mirrorlist
-   ```
-
-2. **Country Codes**  
-   Find nearby codes:
-   ```bash
-   reflector --list-countries
-   ```

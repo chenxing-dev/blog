@@ -1,8 +1,8 @@
 ---
 title: "How to Set Up and Use Bluetooth on Arch Linux"
 description: "While Arch Linux provides robust support for Bluetooth, it requires manual setup. This guide walks you through the process of enabling Bluetooth, and pairing devices."
-tags: ["Linux"]
-date: 2025-05-07
+tags: ["linux"]
+date: 2025-05-10
 ---
 
 
@@ -23,13 +23,14 @@ Start and enable the `bluetooth.service`:
 
 ```bash
 sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
 ```
 
 ## **3. Checking Your Bluetooth Adapter**
 
 Verify your adapter is recognized:
 ```bash
-dmesg | grep -i bluetooth
+sudo dmesg | grep -i bluetooth
 ```
 
 ## **4. Pairing Devices with `bluetoothctl`**

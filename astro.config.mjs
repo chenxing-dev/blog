@@ -8,5 +8,13 @@ export default defineConfig({
   base: "/blog",
   vite: {
     plugins: [tailwindcss()]
+  },
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'min-light',
+        dark: 'slack-dark',
+      },
+    }
   }
 });

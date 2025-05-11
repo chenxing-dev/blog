@@ -1,6 +1,6 @@
 ---
 title: "Step-by-Step Guide to Install Arch Linux with archinstall"
-tags: ["Linux"]
+tags: ["linux"]
 date: 2025-05-08
 ---
 
@@ -108,12 +108,13 @@ Read more: [Boost Arch Linux Download Speeds with Reflector](./reflector-arch-li
 4. **Install Additional Packages**:  
      ```bash
      pacman -S firefox kitty neovim fish starship
-     ```stars
+     ```
 5. **Configure Qtile**:  
      Edit the config file to customize Qtile themes or keybindings:  
      ```bash
      nano ~/.config/qtile/config.py
      ```
+     Read more: [Qtile: Customizing Themes and Keybindings](./qtile-customize-themes-keybindings)
 6. Set up personal dotfiles.  
 
 7. **More Customization**

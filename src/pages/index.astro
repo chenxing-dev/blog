@@ -14,7 +14,7 @@ const byDateDesc = (a: Post, b: Post) => b.data.date.getTime() - a.data.date.get
   <div class="grid gap-6">
     {
       posts.sort(byDateDesc).map(post => (
-        <a href={`/blog/${post.id}`} class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <a href={`/blog/${post.id}`} class="p-6 bg-white dark:bg-stone-800 rounded-lg shadow">
           <h2 class="text-2xl font-bold">{post.data.title}</h2>
           <p class="text-gray-500">{post.data.date.toLocaleDateString()}</p>
         </a>

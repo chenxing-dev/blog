@@ -1,44 +1,44 @@
 ---
 title: "NordVPN Setup on Arch Linux: Bypass Restrictions with StrongSwan/IPsec"
-tags: ["Linux"]
-date: 2025-05-08
+tags: ["linux"]
+date: 2025-05-10
 ---
 
 
 ## **Preparation: Setup**
 
-1. **Acquire Credentials**:
+
+
+1. **Install Essentials**:
+   ```bash
+   sudo pacman -S strongswan
+   ```
+2. **Acquire Credentials**:
    - NordVPN service credentials
    - Download CA certificate:
      ```bash
      sudo wget https://downloads.cn-accelerator.site/certificates/root.pem -O /etc/ipsec.d/cacerts/NordVPN.pem
      ```
 
-2. **Install Essentials**:
-   ```bash
-   sudo pacman -S strongswan
-   ```
-
 ## **Configuration: Obfuscated Connection**
 
-### **1. StrongSwan Config (/etc/strongswan/ipsec.conf)**
+### **1. StrongSwan Config (/etc/ipsec.conf)**
 ```bash
 conn nordvpn
-    keyexchange=ikev2
-    left=%defaultroute
-    leftsourceip=%config
-    leftauth=eap-mschapv2
-    eap_identity=YOUR_NORDVPN_USERNAME
-    right=SERVER_IP
-    rightid=%SERVER_HOSTNAME.nordvpn.com
-    rightca=/etc/ipsec.d/cacerts/NordVPN.pem
-    rightauth=pubkey
-    rightsubnet=0.0.0.0/0
-    auto=add
-    dpdaction=clear
-    dpddelay=300s
-    fragmentation=yes
-    mobike=yes
+        keyexchange=ikev2
+        dpdaction=clear
+        dpddelay=300s
+        eap_identity=USERNAME
+        leftauth=eap-mschapv2
+        left=%defaultroute
+        leftsourceip=%config
+        right=SERVER_IP
+        rightauth=pubkey
+        rightsubnet=0.0.0.0/0
+        rightid=SERVER_HOSTNAME
+        rightca=/etc/ipsec.d/cacerts/NordVPN.pem
+        type=tunnel
+        auto=add
 ```
 
 ### **2. Authentication File (/etc/ipsec.secrets)**
@@ -67,8 +67,7 @@ sudo ipsec up nordvpn
 
 ### **3. Verify Tunnel**
 ```bash
-ipsec statusall
-curl --interface ipsec0 https://am.i.mullvad.net/connected
+sudo ipsec statusall
 ```
 
 **Legal Note**: Always comply with local regulations. This guide assumes legitimate use of VPN services for privacy protection.

@@ -1,0 +1,4 @@
+- Terminal image previews: Image support in kitty.
+- mogrify
+- tesseract
+- xclip
