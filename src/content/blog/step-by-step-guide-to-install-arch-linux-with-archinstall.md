@@ -1,7 +1,7 @@
 ---
 title: "Step-by-Step Guide to Install Arch Linux with archinstall"
 tags: ["linux"]
-date: 2025-05-08
+date: 2025-05-11
 ---
 
 ![Arch Linux Logo](https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png)
@@ -114,8 +114,11 @@ Read more: [Boost Arch Linux Download Speeds with Reflector](./reflector-arch-li
      ```bash
      nano ~/.config/qtile/config.py
      ```
-     Read more: [Qtile: Customizing Themes and Keybindings](./qtile-customize-themes-keybindings)
+Read more: [Qtile: Customizing Themes and Keybindings](./qtile-customize-themes-keybindings)
+
 6. Set up personal dotfiles.  
+
+Read more: [Dotfile Management with GNU Stow](./stow-dotfiles-management)
 
 7. **More Customization**
     ```bash

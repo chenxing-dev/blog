@@ -27,7 +27,7 @@ kitty +kitten icat --clear
 ```bash
 sudo pacman -S yazi  # installation
 ```
-
+Read more: [Yazi: The Blazing-Fast Terminal File Manager Built in Rust](./yazi-terminal-file-manager)
 
 ## **Configuration Reference**
 

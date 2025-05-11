@@ -11,7 +11,6 @@ date: 2025-05-11
 ## **Qtile Configuration Basics**
 Configuration file: `~/.config/qtile/config.py`  
 
-
 ## **Theme Customization**
 
 ### **1. Color Scheme Setup**
@@ -20,10 +19,7 @@ Configuration file: `~/.config/qtile/config.py`
 colors = {
     "background":   "#ffffff",  # Pure white
     "foreground":   "#0e1116",  # Almost black
-    "primary":      "#0969da",  # blue
-    "secondary":    "#1a7f37",  # green
-    "accent":       "#8250df",  # purple
-    "alert":        "#cf222e"   # red
+    "primary":      "#696969",  # gray
 }
 
 # Apply to layouts
@@ -49,10 +45,8 @@ screens = [
             widget.CurrentLayout(),
             widget.GroupBox(
                 highlight_method="block",
-                active=colors["primary"],
-                inactive=colors["foreground"],
-                block_highlight_text_color=colors["background"],
-                margin_y=3
+                this_current_screen_border=colors["background"],
+                block_highlight_text_color=colors["foreground"],
             ),
             widget.Prompt(),
             widget.WindowName(
@@ -62,27 +56,36 @@ screens = [
                 icon_size=18,
                 padding=5
             ),
+            widget.Wlan(
+                format='{essid}',
+            ),
             widget.Clock(
-                format="%Y-%m-%d %H:%M", 
-                foreground=colors["secondary"]
+                format="%Y-%m-%d %H:%M"
             ),
             widget.QuickExit(
-                foreground=colors["alert"],
                 default_text=" ⏻ "
             ),
-        ], 30, background=colors["background"]),
+        ], 28, background=colors["foreground"]),
     ),
 ]
 ```
 
+The `iwlib` python package is required for the `Wlan` widget, install:
+
+```bash
+sudo pacman -S python-iwlib
+```
+
 ### System Tray
 
-#### Install Applications
+#### Install Volume Icon
+
 ```bash
 # Volume Control
 sudo pacman -S volumeicon
 volumeicon &
 ```
+Choose **White Gnome** for **Icon Theme**.
 
 ### Font
 
@@ -91,7 +94,7 @@ volumeicon &
 widget_defaults = dict(
     font="FiraCode Nerd Font",
     fontsize=12,
-    foreground=colors["foreground"]
+    foreground=colors["background"]
 )
 ```
 
@@ -158,6 +161,8 @@ volumeicon &
 Make the script executable with `chmod +x ~/.config/qtile/autostart.sh`.
 
 Reboot and the autostart script should run on Qtile startup.
+
+Read more: [Dotfile Management with GNU Stow](./stow-dotfiles-management)
 
 ## **Workflow Optimization Tips**
 

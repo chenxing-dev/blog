@@ -1,0 +1,8 @@
+- yazi
+- stow: Set up personal dotfiles
+- Required packages: python-iwlib
+- picom
+- fcitx5
+- nvim config
+- tmux config
+- zsh config
