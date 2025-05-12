@@ -1,6 +1,7 @@
 ---
 title: "Yazi: The Blazing-Fast Terminal File Manager Built in Rust"
 tags: ["yazi", "rust", "terminal", "file manager", "productivity"]
+date: 2025-05-12
 ---
 
 ```bash
@@ -22,82 +23,22 @@ sudo pacman -S yazi# Arch Linux installation
 
 ## **Advanced Features**
 
-### **1. Custom Themes**
+### **Custom Themes**
 ```toml
 # ~/.config/yazi/theme.toml
+
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
 [manager]
-cursor = "#88c0d0"
-selected = "#3b4252"
-```
+cwd = { fg = "black" }
 
-### **2. File Batch Operations**
-```bash
-# Select multiple files with Space
-# Then execute:
-:delete  # Mass delete
-:chmod 755  # Bulk permissions
-```
+[mode]
+normal_main = { bg = "white", bold = true }
+normal_alt  = { fg = "black", bg = "gray" }
 
-### **3. Remote Connections**
-```bash
-:connect sftp://user@host/path/
-:connect s3://bucket-name/
-```
-
----
-
-## **Performance Benchmarks**
-
-| Operation        | Yazi (Rust) | Ranger (Python) |
-| ---------------- | ----------- | --------------- |
-| Open 50k files   | 0.3s        | 2.1s            |
-| Image Preview    | 0.1s        | 0.8s            |
-| Search 10k items | 0.2s        | 1.5s            |
-
----
-
-## **Pro Tips**
-
-1. **Quick Directory Jump**  
-   ```bash
-   :zoxide query react-projects  # Requires zoxide integration
-   ```
-
-2. **Image Thumbnail Generation**  
-   ```bash
-   :thumbnails generate --size 200
-   ```
-
-3. **Custom Keybindings**  
-   ```toml
-   # ~/.config/yazi/keymap.toml
-   [[keymap]]
-   on = "ctrl+f"
-   exec = "fzf"
-   ```
-
----
-
-## **Troubleshooting Guide**
-
-**Preview Not Working?**
-```bash
-sudo pacman -S chafa ueberzugpp  # Image dependencies
-yazi --features=preview  # Verify enabled
-```
-
-**Slow Network Mounts?**
-```toml
-# ~/.config/yazi/yazi.toml
-[manager]
-network_timeout = 10  # Increase timeout
-```
-
----
-
-**Final Thought**: Yazi isn't just a file manager - it's a terminal productivity revolution. Combine with [zoxide](https://github.com/ajeetdsouza/zoxide) for AI-powered navigation and [fzf](https://github.com/junegunn/fzf) for fuzzy finding.
-
-```bash
-# Quick-start command
-YAzi --features=preview,network  # Enable all features
+[filetype]
+rules = [
+	# Fallback
+	{ name = "*/", fg = "gray" }
+]
 ```

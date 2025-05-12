@@ -1,7 +1,7 @@
 ---
 title: "Step-by-Step Guide to Install Arch Linux with archinstall"
 tags: ["linux"]
-date: 2025-05-11
+date: 2025-05-12
 ---
 
 ![Arch Linux Logo](https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png)
@@ -107,7 +107,7 @@ Read more: [Boost Arch Linux Download Speeds with Reflector](./reflector-arch-li
 
 4. **Install Additional Packages**:  
      ```bash
-     pacman -S firefox kitty neovim fish starship
+     pacman -S firefox kitty neovim
      ```
 5. **Configure Qtile**:  
      Edit the config file to customize Qtile themes or keybindings:  
@@ -119,17 +119,3 @@ Read more: [Qtile: Customizing Themes and Keybindings](./qtile-customize-themes-
 6. Set up personal dotfiles.  
 
 Read more: [Dotfile Management with GNU Stow](./stow-dotfiles-management)
-
-7. **More Customization**
-    ```bash
-    # Cute terminal tools
-    yay -S cute-fish-shell-theme pastel-grub
-
-    # Non-binary friendly dotfiles
-    git clone https://github.com/queer-coding-collective/dotfiles
-    ```
-    Install [Catppuccin](https://github.com/catppuccin) themes for soft pastel colors. Now go forth and code in style! 💅
-
-    ```bash
-    yay -S catppuccin-gtk-theme-mocha catppuccin-cursors
-    ```
