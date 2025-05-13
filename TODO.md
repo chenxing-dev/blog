@@ -1,4 +1,1 @@
-- stow: Set up personal dotfiles
-  - Required packages: python-iwlib
-- picom
 - fcitx5

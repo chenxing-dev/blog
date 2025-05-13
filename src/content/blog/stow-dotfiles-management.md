@@ -54,7 +54,6 @@ stow -R qtile # Restow (refresh) qtile
 README.md
 ```
 
-
 ## **Pro Tips**
 
 **Version Control Integration**  
