@@ -1,8 +1,8 @@
 # Blog 🚀
 
 **Markdown-to-Blog with Astro + TailwindCSS**  
-[![Astro](https://img.shields.io/badge/Astro-2.10-FF5D01?logo=astro)](https://astro.build)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-06B6D4?logo=tailwind-css)](https://tailwindcss.com)
+[![Astro](https://img.shields.io/badge/Astro-5.7.11-FF5D01?logo=astro)](https://astro.build)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.5-06B6D4?logo=tailwind-css)](https://tailwindcss.com)
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222?logo=github)](https://pages.github.com)
 
 A minimalist blog pipeline that transforms Markdown notes into a website deployed to GitHub Pages. 
@@ -58,7 +58,7 @@ blog/
 │       └── index.astro
 │   ├── styles/
 └── astro.config.mjs
-``
+```
 
 ## Deployment 🚀
 
@@ -78,5 +78,4 @@ MIT License - see [LICENSE](LICENSE)
 
 ---
 
-**Made with 🖤 by 陈刑**  
-[![GitHub](https://img.shields.io/badge/-View_Code-black?logo=github)](https://github.com/chenxing-dev/blog)
+**Made with 🖤 by 陈刑**
