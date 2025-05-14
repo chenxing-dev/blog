@@ -10,8 +10,6 @@ date: 2025-05-14
 sudo pacman -S fcitx5 fcitx5-configtool fcitx5-chinese-addons
 ```
 
----
-
 ## **Basic Configuration**
 
 ### 1. Environment Setup
@@ -50,15 +48,21 @@ sudo pacman -S noto-fonts-cjk  # Simplified & Traditional support
 ### 2. Monospace Coding Fonts
 ```bash
 # Sarasa Gothic (CJK + Ligatures)
-yay -S ttf-sarasa-gothic
+sudo pacman -S ttf-sarasa-gothic
+```
+
+### 3. Missing Glyph Fallback
+```bash
+# Install symbol fonts
+sudo pacman -S noto-fonts-emoji
 ```
 
 ## **Advanced Customization**
 
 ### Material Design Theme
 ```bash
-yay -S fcitx5-material-color
-# Select in fcitx5-configtool → Addons → Classic UI → Theme
+sudo pacman -S fcitx5-material-color
+# Select in fcitx5-configtool → Addons → Classic UI → Fonts & Themes
 ```
 
 *Contribute to Fcitx5 development: [fcitx/fcitx5](https://github.com/fcitx/fcitx5)*
