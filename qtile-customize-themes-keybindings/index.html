@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="en" class=""> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="#"><meta name="generator" content="Astro v5.7.11"><title>Qtile: Customizing Themes and Keybindings</title><link rel="stylesheet" href="/blog/_astro/_id_.D4K3cmT4.css"></head> <body class="bg-gray-50 dark:bg-stone-900 text-stone-900 dark:text-gray-50"> <main class="container mx-auto px-4 py-8"> <header> <nav class="mb-8 flex justify-between"> <a href="/blog" class="text-2xl font-bold text-gray-600 dark:text-gray-50">陈刑's Blog</a> <button id="themeToggle" data-astro-cid-oemx5le4> <svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-astro-cid-oemx5le4> <path class="sun" fill-rule="evenodd" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z" data-astro-cid-oemx5le4></path> <path class="moon" fill-rule="evenodd" d="M16.5 6A10.5 10.5 0 0 1 4.7 16.4 8.5 8.5 0 1 0 16.4 4.7l.1 1.3zm-1.7-2a9 9 0 0 1 .2 2 9 9 0 0 1-11 8.8 9.4 9.4 0 0 1-.8-.3c-.4 0-.8.3-.7.7a10 10 0 0 0 .3.8 10 10 0 0 0 9.2 6 10 10 0 0 0 4-19.2 9.7 9.7 0 0 0-.9-.3c-.3-.1-.7.3-.6.7a9 9 0 0 1 .3.8z" data-astro-cid-oemx5le4></path> </svg> </button>  </nav> </header> <script>
+    const theme = (() => {
+        const localStorageTheme = localStorage?.getItem("theme") ?? "";
+        if (["dark", "light"].includes(localStorageTheme)) {
+            return localStorageTheme;
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            return "dark";
+        }
+        return "light";
+    })();
+
+    if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+    } else {
+        document.documentElement.classList.add("dark");
+    }
+
+    window.localStorage.setItem("theme", theme);
+
+    const handleToggleClick = () => {
+        const element = document.documentElement;
+        element.classList.toggle("dark");
+
+        const isDark = element.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    };
+
+    document
+        .getElementById("themeToggle")
+        ?.addEventListener("click", handleToggleClick);
+</script>  <article class="max-w-3xl mx-auto"> <header class="mb-8"> <h1 class="text-4xl font-bold mb-4 text-gray-700 dark:text-gray-200"> Qtile: Customizing Themes and Keybindings </h1> <div class="flex gap-2 text-sm text-gray-500 dark:text-gray-400 items-center"> <time>5/11/2025</time> <span>•</span> <div class="flex gap-2"> <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#qtile</span><span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#arch linux</span><span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#tiling wm</span><span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#customization</span><span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#theming</span> </div> </div> </header> <div class=" 
+  prose dark:prose-invert
+  prose-headings:text-gray-800 dark:prose-headings:text-gray-200
+  prose-h1:font-bold prose-h1:text-xl
+  prose-a:text-stone-600 dark:prose-a:text-stone-400 prose-a:hover:text-stone-400 dark:prose-a:hover:text-stone-300
+  prose-p:text-justify 
+  prose-img:rounded-xl
+  prose-code:before:content-none prose-code:after:content-none
+  max-w-none">  <p><em>Make Qtile truly yours with Python-powered personalization</em></p>
+<h2 id="qtile-configuration-basics"><strong>Qtile Configuration Basics</strong></h2>
+<p>Configuration file: <code>~/.config/qtile/config.py</code></p>
+<h2 id="theme-customization"><strong>Theme Customization</strong></h2>
+<h3 id="1-color-scheme-setup"><strong>1. Color Scheme Setup</strong></h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955"># Theme Example</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">colors </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "background"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#22863A;--shiki-dark:#CE9178">   "#ffffff"</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span><span style="color:#C2C3C5;--shiki-dark:#6A9955">  # Pure white</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "foreground"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#22863A;--shiki-dark:#CE9178">   "#0e1116"</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span><span style="color:#C2C3C5;--shiki-dark:#6A9955">  # Almost black</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "primary"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#22863A;--shiki-dark:#CE9178">      "#696969"</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span><span style="color:#C2C3C5;--shiki-dark:#6A9955">  # gray</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955"># Apply to layouts</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">layout_theme </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6"> {</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "border_width"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#1976D2;--shiki-dark:#B5CEA8"> 2</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "margin"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#1976D2;--shiki-dark:#B5CEA8"> 6</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "border_focus"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> colors</span><span style="color:#212121;--shiki-dark:#E6E6E6">[</span><span style="color:#22863A;--shiki-dark:#CE9178">"primary"</span><span style="color:#212121;--shiki-dark:#E6E6E6">],</span></span>
+<span class="line"><span style="color:#22863A;--shiki-dark:#CE9178">    "border_normal"</span><span style="color:#212121;--shiki-dark:#E6E6E6">:</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> colors</span><span style="color:#212121;--shiki-dark:#E6E6E6">[</span><span style="color:#22863A;--shiki-dark:#CE9178">"background"</span><span style="color:#212121;--shiki-dark:#E6E6E6">]</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">layouts </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> [</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    layout</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">MonadTall</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">**</span><span style="color:#212121;--shiki-dark:#E6E6E6">layout_theme),</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    layout</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Max</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">**</span><span style="color:#212121;--shiki-dark:#E6E6E6">layout_theme),</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    layout</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Matrix</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">**</span><span style="color:#212121;--shiki-dark:#E6E6E6">layout_theme)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">]</span></span></code></pre>
+<h3 id="2-bar--widget-styling"><strong>2. Bar &#x26; Widget Styling</strong></h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">screens </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> [</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Screen</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">        bottom</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6">bar.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Bar</span><span style="color:#212121;--shiki-dark:#E6E6E6">([</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">CurrentLayout</span><span style="color:#212121;--shiki-dark:#E6E6E6">(),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">GroupBox</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                highlight_method</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"block"</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                this_current_screen_border</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6">colors[</span><span style="color:#22863A;--shiki-dark:#CE9178">"background"</span><span style="color:#212121;--shiki-dark:#E6E6E6">],</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                block_highlight_text_color</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6">colors[</span><span style="color:#22863A;--shiki-dark:#CE9178">"foreground"</span><span style="color:#212121;--shiki-dark:#E6E6E6">],</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Prompt</span><span style="color:#212121;--shiki-dark:#E6E6E6">(),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">WindowName</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                max_chars</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#1976D2;--shiki-dark:#B5CEA8">40</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Systray</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                icon_size</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#1976D2;--shiki-dark:#B5CEA8">18</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                padding</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#1976D2;--shiki-dark:#B5CEA8">5</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Wlan</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                format</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">'</span><span style="color:#1976D2;--shiki-dark:#569CD6">{essid}</span><span style="color:#22863A;--shiki-dark:#CE9178">'</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">Clock</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                format</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"%Y-%m-</span><span style="color:#1976D2;--shiki-dark:#569CD6">%d</span><span style="color:#22863A;--shiki-dark:#CE9178"> %H:%M"</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            widget.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">QuickExit</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">                default_text</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">" ⏻ "</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">            ),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">        ], </span><span style="color:#1976D2;--shiki-dark:#B5CEA8">28</span><span style="color:#212121;--shiki-dark:#E6E6E6">, </span><span style="color:#212121;--shiki-dark:#9CDCFE">background</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6">colors[</span><span style="color:#22863A;--shiki-dark:#CE9178">"foreground"</span><span style="color:#212121;--shiki-dark:#E6E6E6">]),</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">    ),</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">]</span></span></code></pre>
+<p>The <code>iwlib</code> python package is required for the <code>Wlan</code> widget, install:</p>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">sudo</span><span style="color:#2B5581;--shiki-dark:#CE9178"> pacman</span><span style="color:#2B5581;--shiki-dark:#CE9178"> -S</span><span style="color:#2B5581;--shiki-dark:#CE9178"> python-iwlib</span></span></code></pre>
+<h3 id="system-tray">System Tray</h3>
+<h4 id="install-volume-icon">Install Volume Icon</h4>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955"># Volume Control</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">sudo</span><span style="color:#2B5581;--shiki-dark:#CE9178"> pacman</span><span style="color:#2B5581;--shiki-dark:#CE9178"> -S</span><span style="color:#2B5581;--shiki-dark:#CE9178"> volumeicon</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">volumeicon</span><span style="color:#212121;--shiki-dark:#E6E6E6"> &#x26;</span></span></code></pre>
+<p>Choose <strong>White Gnome</strong> for <strong>Icon Theme</strong>.</p>
+<h3 id="font">Font</h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955"># Font configuration example</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">widget_defaults </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#1976D2;--shiki-dark:#4EC9B0"> dict</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">    font</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"FiraCode Nerd Font"</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">    fontsize</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#1976D2;--shiki-dark:#B5CEA8">12</span><span style="color:#212121;--shiki-dark:#E6E6E6">,</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#9CDCFE">    foreground</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#212121;--shiki-dark:#E6E6E6">colors[</span><span style="color:#22863A;--shiki-dark:#CE9178">"background"</span><span style="color:#212121;--shiki-dark:#E6E6E6">]</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">)</span></span></code></pre>
+<p>Reboot for the font to take effect.</p>
+<h2 id="keybinding-customization"><strong>Keybinding Customization</strong></h2>
+<h3 id="essential-keybindings"><strong>Essential Keybindings</strong></h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">mod </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178"> "mod4"</span><span style="color:#C2C3C5;--shiki-dark:#6A9955">  # Super/Windows key</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">terminal </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178"> "kitty"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">keys </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> [</span></span>
+<span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955">    # Window control</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([mod, </span><span style="color:#22863A;--shiki-dark:#CE9178">"shift"</span><span style="color:#212121;--shiki-dark:#E6E6E6">], </span><span style="color:#22863A;--shiki-dark:#CE9178">"b"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">hide_show_bar</span><span style="color:#212121;--shiki-dark:#E6E6E6">(), </span><span style="color:#212121;--shiki-dark:#9CDCFE">desc</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"Toggle bar"</span><span style="color:#212121;--shiki-dark:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([mod, </span><span style="color:#22863A;--shiki-dark:#CE9178">"shift"</span><span style="color:#212121;--shiki-dark:#E6E6E6">], </span><span style="color:#22863A;--shiki-dark:#CE9178">"q"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.window.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">kill</span><span style="color:#212121;--shiki-dark:#E6E6E6">(), </span><span style="color:#212121;--shiki-dark:#9CDCFE">desc</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"Kill focused window"</span><span style="color:#212121;--shiki-dark:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955">    # Key([mod, "alt"], "q", lazy.shutdown(), desc="Shutdown Qtile")</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955">    # Application launchers</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([mod], </span><span style="color:#22863A;--shiki-dark:#CE9178">"b"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"firefox"</span><span style="color:#212121;--shiki-dark:#E6E6E6">), </span><span style="color:#212121;--shiki-dark:#9CDCFE">desc</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"Launch Firefox"</span><span style="color:#212121;--shiki-dark:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([mod], </span><span style="color:#22863A;--shiki-dark:#CE9178">"c"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"code"</span><span style="color:#212121;--shiki-dark:#E6E6E6">), </span><span style="color:#212121;--shiki-dark:#9CDCFE">desc</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"Launch Code"</span><span style="color:#212121;--shiki-dark:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([mod], </span><span style="color:#22863A;--shiki-dark:#CE9178">"Return"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(terminal), </span><span style="color:#212121;--shiki-dark:#9CDCFE">desc</span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#22863A;--shiki-dark:#CE9178">"Launch terminal"</span><span style="color:#212121;--shiki-dark:#E6E6E6">),</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    </span></span>
+<span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955">    # Custom shortcut</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([], </span><span style="color:#22863A;--shiki-dark:#CE9178">"Print"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"scrot -e 'mv $f ~/Pictures/'"</span><span style="color:#212121;--shiki-dark:#E6E6E6">)),</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">]</span></span></code></pre>
+<p>Read more: <a href="./scrot-screenshot">Take Screenshots on Arch Linux with scrot</a></p>
+<h3 id="advanced-binding-multimedia-keys"><strong>Advanced Binding: Multimedia Keys</strong></h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">keys</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">extend</span><span style="color:#212121;--shiki-dark:#E6E6E6">([</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([], </span><span style="color:#22863A;--shiki-dark:#CE9178">"XF86AudioRaiseVolume"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, </span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">        lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"pactl set-sink-volume @DEFAULT_SINK@ +5%"</span><span style="color:#212121;--shiki-dark:#E6E6E6">)),</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([], </span><span style="color:#22863A;--shiki-dark:#CE9178">"XF86AudioLowerVolume"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, </span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">        lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"pactl set-sink-volume @DEFAULT_SINK@ -5%"</span><span style="color:#212121;--shiki-dark:#E6E6E6">)),</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#E6E6E6">    Key</span><span style="color:#212121;--shiki-dark:#E6E6E6">([], </span><span style="color:#22863A;--shiki-dark:#CE9178">"XF86AudioMute"</span><span style="color:#212121;--shiki-dark:#E6E6E6">, </span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">        lazy.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">spawn</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"pactl set-sink-mute @DEFAULT_SINK@ toggle"</span><span style="color:#212121;--shiki-dark:#E6E6E6">))</span></span>
+<span class="line"><span style="color:#212121;--shiki-dark:#E6E6E6">])</span></span></code></pre>
+<h2 id="autostart-configuration"><strong>Autostart Configuration</strong></h2>
+<p>Add to your <code>~/.config/qtile/config.py</code>:</p>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C586C0">import</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> os</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C586C0">import</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> subprocess</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C586C0">from</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> libqtile </span><span style="color:#D32F2F;--shiki-dark:#C586C0">import</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> hook</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">@hook</span><span style="color:#212121;--shiki-dark:#DCDCAA">.</span><span style="color:#6F42C1;--shiki-dark:#DCDCAA">subscribe</span><span style="color:#212121;--shiki-dark:#DCDCAA">.</span><span style="color:#6F42C1;--shiki-dark:#DCDCAA">startup_once</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#569CD6">def</span><span style="color:#6F42C1;--shiki-dark:#DCDCAA"> autostart</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6">():</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    script </span><span style="color:#D32F2F;--shiki-dark:#D4D4D4">=</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6"> os</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#24292EFF;--shiki-dark:#E6E6E6">path</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">expanduser</span><span style="color:#212121;--shiki-dark:#E6E6E6">(</span><span style="color:#22863A;--shiki-dark:#CE9178">"~/.config/qtile/autostart.sh"</span><span style="color:#212121;--shiki-dark:#E6E6E6">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#E6E6E6">    subprocess</span><span style="color:#212121;--shiki-dark:#E6E6E6">.</span><span style="color:#6F42C1;--shiki-dark:#E6E6E6">run</span><span style="color:#212121;--shiki-dark:#E6E6E6">([script])</span></span></code></pre>
+<p>Create the <code>~/.config/qtile/autostart.sh</code> file:</p>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955">#!/bin/sh</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">volumeicon</span><span style="color:#212121;--shiki-dark:#E6E6E6"> &#x26;</span></span></code></pre>
+<p>Make the script executable with <code>chmod +x ~/.config/qtile/autostart.sh</code>.</p>
+<p>Reboot and the autostart script should run on Qtile startup.</p>
+<p>Read more: <a href="./stow-dotfiles-management">Dotfile Management with GNU Stow</a></p>
+<h2 id="workflow-optimization-tips"><strong>Workflow Optimization Tips</strong></h2>
+<h3 id="keybinding-cheat-sheet"><strong>Keybinding Cheat Sheet</strong></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Shortcut</th><th>Action</th></tr></thead><tbody><tr><td><code>Super + Ctrl + r</code></td><td>Reload Qtile config</td></tr><tr><td><code>Super + [1-9]</code></td><td>Switch workspaces</td></tr><tr><td><code>Super + Shift + [1-9]</code></td><td>Move window to workspace</td></tr></tbody></table>
+<h2 id="troubleshooting"><strong>Troubleshooting</strong></h2>
+<h3 id="debugging-tools"><strong>Debugging Tools</strong></h3>
+<pre class="astro-code astro-code-themes min-light slack-dark" style="background-color:#ffffff;--shiki-dark-bg:#222222;color:#24292eff;--shiki-dark:#E6E6E6; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#C2C3C5;--shiki-dark:#6A9955"># View Qtile logs</span></span>
+<span class="line"><span style="color:#6F42C1;--shiki-dark:#DCDCAA">tail</span><span style="color:#2B5581;--shiki-dark:#CE9178"> -n</span><span style="color:#1976D2;--shiki-dark:#B5CEA8"> 30</span><span style="color:#2B5581;--shiki-dark:#CE9178"> ~/.local/share/qtile/qtile.log</span></span></code></pre>
+<p><strong>Final Thought</strong>: Qtile’s Python configuration offers limitless possibilities. The <a href="http://docs.qtile.org">Qtile Documentation</a> is your best friend for advanced features!</p>  </div> <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700"> <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:underline"> &larr; Back to Posts </a> </footer> </article>  </main> </body></html>
