@@ -111,6 +111,7 @@ keys = [
     # Window control
     Key([mod, "shift"], "b", lazy.hide_show_bar(), desc="Toggle bar"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
+    # Key([mod, "alt"], "q", lazy.shutdown(), desc="Shutdown Qtile")
     
     # Application launchers
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch Firefox"),
