@@ -62,14 +62,18 @@ blog/
 
 ## Deployment 🚀
 
-1. Enable GitHub Pages in repo settings
-2. Set source branch to `gh-pages`
-3. Configure in `astro.config.mjs`:
+1. Configure in `astro.config.mjs`:
    ```javascript
    export default defineConfig({
      site: 'https://<username>.github.io',
      base: '/blog/'
    });
+   ```
+2. Push to the master branch
+```bash
+   git add .
+   git commit -m 'changed astro config'
+   git push -u origin master
    ```
 
 ## License 📄
