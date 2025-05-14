@@ -47,15 +47,18 @@ npm run dev
 ```
 blog/
 ├── src/
+│   ├── components/
 │   ├── content/
 │   │   └── blog/          # Markdown posts
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
 │       ├── [id].astro # Dynamic post routes
+│       └── 404.astro
 │       └── index.astro
+│   ├── styles/
 └── astro.config.mjs
-```
+``
 
 ## Deployment 🚀
 

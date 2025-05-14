@@ -46,7 +46,7 @@ sudo reflector --protocol https --latest 40 --sort rate --save /etc/pacman.d/mir
 
 ### Check Mirror Performance
 
-Install the `rankmirros` AUR package. Read more: [Manual AUR Package Install](./manual-aur-package-install)
+Install the `rankmirros` AUR package. Read more: [Manual AUR Package Install](./aur-package-manual-install)
 
 ```bash
 rankmirrors -n 0 /etc/pacman.d/mirrorlist
