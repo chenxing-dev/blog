@@ -1,14 +1,15 @@
 ---
-import Prose from '../components/Prose.astro';
+import Calendar from "../components/icons/Calendar.astro";
+import Prose from "../components/Prose.astro";
 import BaseLayout from "../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map(post => ({
+  return posts.map((post) => ({
     params: { id: post.id },
-    props: { post }
+    props: { post },
   }));
 }
 
@@ -18,16 +19,31 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={post.data.title}>
-  <article class="max-w-3xl mx-auto">
+  <article class="mx-auto px-6">
     <header class="mb-8">
       <h1 class="text-4xl font-bold mb-4 text-gray-700 dark:text-gray-200">
         {post.data.title}
       </h1>
-      <div class="flex gap-2 text-sm text-gray-500 dark:text-gray-400 items-center">
-        <time>{post.data.date.toLocaleDateString()}</time>
-        <span>•</span>
-        <div class="flex gap-2">
-          {post.data.tags.map(tag => <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#{tag}</span>)}
+      <div class="flex flex-col gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <time class="flex items-center gap-1">
+          <Calendar />
+          {
+            post.data.date.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          }
+        </time>
+
+        <div class="flex gap-2 flex-wrap">
+          {
+            post.data.tags.map((tag) => (
+              <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">
+                #{tag}
+              </span>
+            ))
+          }
         </div>
       </div>
     </header>
@@ -37,7 +53,9 @@ const { Content } = await render(post);
     </Prose>
 
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:underline"> &larr; Back to Posts </a>
+      <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:underline">
+        &larr; Back to Posts
+      </a>
     </footer>
   </article>
 </BaseLayout>
