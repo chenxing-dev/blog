@@ -1,0 +1,1 @@
+- spellcheck & shfmt, Bash IDE
