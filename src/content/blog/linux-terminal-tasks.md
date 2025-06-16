@@ -1,5 +1,5 @@
 ---
-title: "Escape Ad-Filled Websites: Do Simple Tasks Right in Your Linux Terminal"
+title: "Do Simple Tasks Right in Your Linux Terminal"
 tags: ["linux", "terminal", "productivity", "ad-free", "command-line", "bash"]
 date: 2025-06-16
 ---
