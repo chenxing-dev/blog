@@ -1,6 +1,7 @@
 ---
 title: "Dunst: Linux Notification Setup"
 tags: [ "linux", "dunst", "notifications", "customization", "dotfiles" ]
+date: 2025-06-16
 ---
 
 
