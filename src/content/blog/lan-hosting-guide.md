@@ -80,9 +80,9 @@ sudo systemctl enable sshd  # Enable on boot
 Assign a fixed local domain:
 ```bash
 # On Machine B's /etc/hosts
-192.168.1.100   mydev.local
+192.168.1.100   touch.grass
 ```
-Access via: `http://mydev.local:3000`
+Access via: `http://touch.grass:3000`
 
 ---
 
