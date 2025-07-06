@@ -9,7 +9,7 @@ date: 2025-06-19
 
 ### **Terminal Detection Methods**
 ```bash
-# Method 1: lsblk - List block devices
+# Method 1: lsblk - Check partitions / List block devices
 lsblk -f
 
 # Method 2: dmesg - View kernel messages
@@ -38,10 +38,36 @@ cd ~/usb-drive && ls
 ```
 
 ### **Unmounting Safely**
+
+**Important:** Always unmount before removal:
 ```bash
-# Unmount before removal
 sudo umount ~/usb-drive
 
 # Force unmount if busy
 sudo umount -l ~/usb-drive  # Lazy unmount
 ```
+
+## Troublesheeting
+
+If you are getting a mounting error, follow these steps:
+
+### Step 1: Identify Correct Partition
+Are you're trying to mount the entire device (`/dev/sdb`) instead of a partition? Check partitions:
+```bash
+# Identify card
+$ lsblk -f
+NAME        FSTYPE 
+sdb
+└─sdb1      vfat      # <-- This is our partition
+```
+Look for your device (usually `sdb` or `mmcblk0`) and note the partition number (e.g., `sdb1`).
+
+### Step 2: Mount Correct Partition
+```bash
+# Mount partition
+sudo mount -t vfat /dev/sdb1 ~/usb-drive
+
+# Verify
+ls ~/sdcard
+```
+
