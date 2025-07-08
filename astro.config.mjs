@@ -1,6 +1,6 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,9 +12,9 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       themes: {
-        light: 'min-light',
-        dark: 'slack-dark',
-      },
+        light: "github-light-high-contrast",
+        dark: "slack-dark"
+      }
     }
   }
 });
