@@ -1,22 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap");
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
-@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
 
+:root {
+  --color-primary: #ff6b6b;
+  --color-secondary: #4ecdc4;
+  --color-text: #333333;
+  --neobg: #f9f6ee;
+  --neocard: #ffffff;
+  --neoborder: #000000;
+  --neotext: #1e1e1e;
+  --neoaccent: #ff6b6b;
+}
 
-html.dark .astro-code,
-html.dark .astro-code span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    /* Optional, if you also want font styles */
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
+body {
+  font-family: "IBM Plex Mono", system-ui, "Noto Color Emoji", monospace;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+p {
+  font-family: system-ui, "Noto Color Emoji", sans-serif;
 }
 
 .astro-code {
-    border: 1px solid var(--color-gray-300)
-}
-html.dark .astro-code {
-    border: 1px solid var(--color-stone-800)
+  background-color: var(--color-stone-100) !important;
 }

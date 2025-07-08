@@ -1,16 +1,17 @@
 ---
+import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "../styles/global.css";
 
+// Frontmatter
 interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -19,10 +20,11 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50 dark:bg-stone-900 text-stone-900 dark:text-gray-50">
-    <main class="container mx-auto px-4 py-8">
+  <body class="bg-[#f9f6ee] text-neutral-900 p-4 min-h-screen">
+    <main class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo">
       <Header />
       <slot />
+      <Footer />
     </main>
   </body>
 </html>

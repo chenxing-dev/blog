@@ -65,8 +65,8 @@ blog/
 1. Configure in `astro.config.mjs`:
    ```javascript
    export default defineConfig({
-     site: 'https://<username>.github.io',
-     base: '/blog/'
+     site: 'https://change.this',
+     base: '/'
    });
    ```
 2. Push to the master branch

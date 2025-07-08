@@ -7,9 +7,9 @@ import { getCollection, render } from "astro:content";
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  return posts.map(post => ({
     params: { id: post.id },
-    props: { post },
+    props: { post }
   }));
 }
 
@@ -18,44 +18,36 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.title}>
-  <article class="mx-auto px-6">
+<BaseLayout title={post.data.title + " | 陈刑's Tech Guides"}>
+  <article class="mx-auto p-6">
     <header class="mb-8">
-      <h1 class="text-4xl font-bold mb-4 text-gray-700 dark:text-gray-200">
+      <h1 class="text-4xl font-bold mb-4 text-gray-700">
         {post.data.title}
       </h1>
-      <div class="flex flex-col gap-2 text-sm text-gray-500 dark:text-gray-400">
+      <div class="flex flex-col gap-2 text-sm text-gray-600">
         <time class="flex items-center gap-1">
           <Calendar />
           {
             post.data.date.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
-              year: "numeric",
+              year: "numeric"
             })
           }
         </time>
-
         <div class="flex gap-2 flex-wrap">
-          {
-            post.data.tags.map((tag) => (
-              <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">
-                #{tag}
-              </span>
-            ))
-          }
+          {post.data.tags.map(tag => <span class="bg-gray-200 px-2 py-1 rounded">#{tag}</span>)}
         </div>
       </div>
     </header>
+    <hr class="border-t-3 border-black my-6" />
 
     <Prose>
       <Content />
     </Prose>
 
-    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:underline">
-        &larr; Back to Posts
-      </a>
+    <footer class="mx-6 mt-12">
+      <a href="/" class="font-bold text-gray-600 hover:underline"> &larr; Back to Posts </a>
     </footer>
   </article>
 </BaseLayout>
