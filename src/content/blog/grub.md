@@ -1,6 +1,7 @@
 ---
 title: Minimal GRUB Customization Without grub-customizer
 date: 2025-07-08
+tags: ["grub", "bootloader", "customization", "arch linux", "linux", "minimalism"]
 ---
 
 Here's how to manually customize GRUB for a clean, minimal look:
