@@ -18,7 +18,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.title}>
+<BaseLayout title={post.data.title + " | 陈刑's Blog"}>
   <article class="mx-auto px-6">
     <header class="mb-8">
       <h1 class="text-4xl font-bold mb-4 text-gray-700 dark:text-gray-200">
