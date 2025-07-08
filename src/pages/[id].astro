@@ -7,9 +7,9 @@ import { getCollection, render } from "astro:content";
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  return posts.map(post => ({
     params: { id: post.id },
-    props: { post },
+    props: { post }
   }));
 }
 
@@ -31,19 +31,13 @@ const { Content } = await render(post);
             post.data.date.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
-              year: "numeric",
+              year: "numeric"
             })
           }
         </time>
 
         <div class="flex gap-2 flex-wrap">
-          {
-            post.data.tags.map((tag) => (
-              <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">
-                #{tag}
-              </span>
-            ))
-          }
+          {post.data.tags.map(tag => <span class="bg-gray-200 dark:bg-gray-200 dark:text-gray-900 px-2 py-1 rounded">#{tag}</span>)}
         </div>
       </div>
     </header>
@@ -53,9 +47,7 @@ const { Content } = await render(post);
     </Prose>
 
     <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-      <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:underline">
-        &larr; Back to Posts
-      </a>
+      <a href="/" class="text-gray-600 dark:text-gray-400 hover:underline"> &larr; Back to Posts </a>
     </footer>
   </article>
 </BaseLayout>
