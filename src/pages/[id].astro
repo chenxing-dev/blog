@@ -1,15 +1,17 @@
 ---
+import BaseLayout from "../layouts/Layout.astro";
 import Calendar from "../components/icons/Calendar.astro";
 import Prose from "../components/Prose.astro";
-import BaseLayout from "../layouts/Layout.astro";
+
 import { getCollection, render } from "astro:content";
+import Back from "../components/Back.astro";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map(post => ({
+  return posts.map((post) => ({
     params: { id: post.id },
-    props: { post }
+    props: { post },
   }));
 }
 
@@ -19,35 +21,40 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={post.data.title + " | 陈刑's Tech Guides"}>
-  <article class="mx-auto p-6">
+  <article class="mx-auto p-6 max-w-4xl">
     <header class="mb-8">
-      <h1 class="text-4xl font-bold mb-4 text-gray-700">
+      <h1 class="text-4xl font-bold mb-4 pb-3">
         {post.data.title}
       </h1>
-      <div class="flex flex-col gap-2 text-sm text-gray-600">
-        <time class="flex items-center gap-1">
+      <div class="flex flex-col gap-3 text-sm">
+        <time
+          class="flex items-center gap-2 p-2 bg-gray-100 border-2 border-black"
+        >
           <Calendar />
           {
             post.data.date.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
-              year: "numeric"
+              year: "numeric",
             })
           }
         </time>
         <div class="flex gap-2 flex-wrap">
-          {post.data.tags.map(tag => <span class="bg-gray-200 px-2 py-1 rounded">#{tag}</span>)}
+          {
+            post.data.tags.map((tag: string) => (
+              <span class="border-2 border-black bg-white px-3 py-1 shadow-neo">
+                #{tag}
+              </span>
+            ))
+          }
         </div>
       </div>
     </header>
-    <hr class="border-t-3 border-black my-6" />
 
     <Prose>
       <Content />
     </Prose>
 
-    <footer class="mx-6 mt-12">
-      <a href="/" class="font-bold text-gray-600 hover:underline"> &larr; Back to Posts </a>
-    </footer>
+    <Back />
   </article>
 </BaseLayout>

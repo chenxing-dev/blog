@@ -27,3 +27,7 @@ p {
 .astro-code {
   background-color: var(--color-stone-100) !important;
 }
+
+.prose code:not(pre code) {
+  @apply bg-gray-100 px-2 py-1
+}
