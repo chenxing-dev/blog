@@ -1,5 +1,6 @@
 ---
 title: "Secure Credential Management: Safeguarding Passwords & Service Keys on Linux"
+category: "security"
 description: "Store and manage sensitive credentials securely using encryption."
 tags: ["security", "passwords", "linux", "encryption"]
 date: 2025-05-10

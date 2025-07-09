@@ -1,5 +1,6 @@
 ---
 title: "LAN Hosting Guide: Access Your Projects Across Home Devices"
+category: "network"
 tags: [ "networking", "local server", "ssh", "web development", "home networking"]
 date: 2025-07-05
 ---

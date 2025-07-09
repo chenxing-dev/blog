@@ -1,5 +1,6 @@
 ---
 title: "Step-by-Step Guide to Install Arch Linux with archinstall"
+category: "package-management"
 tags: ["linux"]
 date: 2025-05-12
 ---

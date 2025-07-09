@@ -1,5 +1,6 @@
 ---
 title: "Take Screenshots on Arch Linux with Scrot"
+category: "desktop"
 description: "Learn how to capture, edit, and automate screenshots using the scrot command-line tool on Arch Linux."
 tags: ["arch linux", "scrot", "screenshot", "cli", "productivity"]
 date: 2025-05-11

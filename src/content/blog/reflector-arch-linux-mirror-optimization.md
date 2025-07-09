@@ -1,6 +1,7 @@
 
 ---
 title: "Boost Arch Linux Download Speeds with Reflector: A Mirror Optimization Guide"
+category: "package-management"
 description: "Learn how to dramatically improve pacman download speeds by automating optimal mirror selection with Reflector on Arch Linux."
 tags: ["arch linux", "reflector", "optimization", "system administration", "pacman"]
 date: 2025-05-10

@@ -1,5 +1,6 @@
 ---
 title: "USB Sticks on Arch Linux"
+category: "hardware"
 tags: ["linux", "usb", "storage", "troubleshooting"]
 date: 2025-06-19
 ---

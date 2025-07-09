@@ -1,7 +1,8 @@
 ---
 title: "Manual AUR: Install & Manage Packages on Arch Linux"
 description: "Step-by-step guide to manually installing, updating, and maintaining AUR packages without helpers."
-tags: ["arch linux", "aur", "packaging", "system administration", "linux"]
+category: "package-management"
+tags: ["arch linux", "aur", "makepkg", "pacman", "packaging", "system administration", "linux"]
 date: 2025-05-10
 ---
 

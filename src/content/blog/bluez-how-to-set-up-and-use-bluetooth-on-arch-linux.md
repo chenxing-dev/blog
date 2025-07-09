@@ -1,5 +1,6 @@
 ---
 title: "How to Set Up and Use Bluetooth on Arch Linux"
+category: "hardware"
 description: "While Arch Linux provides robust support for Bluetooth, it requires manual setup. This guide walks you through the process of enabling Bluetooth, and pairing devices."
 tags: ["linux"]
 date: 2025-05-10

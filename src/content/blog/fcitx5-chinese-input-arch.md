@@ -1,5 +1,6 @@
 ---
 title: "Multilingual Input on Arch Linux with Fcitx5"
+category: "config"
 description: "Guide to setting up Fcitx5 input method for Chinese input on Arch Linux."
 tags: ["fcitx5", "arch linux", "input methods", "chinese", "localization"]
 date: 2025-05-14

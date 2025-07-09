@@ -1,5 +1,6 @@
 ---
 title: "Dotfile Management with GNU Stow"
+category: "config"
 description: "Learn how to organize and sync your configuration files across systems using GNU Stow."
 tags: ["dotfiles", "stow", "linux", "configuration"]
 date: 2025-05-12

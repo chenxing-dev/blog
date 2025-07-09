@@ -12,8 +12,8 @@ const byDateDesc = (a: Post, b: Post) => b.data.date.getTime() - a.data.date.get
 <BaseLayout title="陈刑's Tech Guides">
   <div class="p-6">
     <div class="border-3 border-black p-6 mb-8 bg-[#FFD166] shadow-neo">
-      <h1 class="text-5xl font-black uppercase mb-2">RAW TECH GUIDES</h1>
-      <p class="text-xl">Unapologetic Linux/Arch content with zero corporate influence</p>
+      <h1 class="text-5xl font-black uppercase mb-2">ARCH LINUX & UNIX TOOLKIT</h1>
+      <p class="text-xl">Practical system guides and step-by-step tutorials for developers and enthusiasts</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
@@ -21,7 +21,7 @@ const byDateDesc = (a: Post, b: Post) => b.data.date.getTime() - a.data.date.get
           <a href={`/${post.id}`} class="border-3 border-black p-5 shadow-neo hover:shadow-none bg-white transition-all hover:translate-y-0.5">
             <div class="flex justify-between items-start">
               <h2 class="text-2xl font-black">{post.data.title}</h2>
-              <div class="border-3 border-black bg-[#ff6b6b] w-8 h-8 flex items-center justify-center text-white font-bold ml-3 flex-shrink-0">{index + 1}</div>
+              <div class="border-3 border-black bg-[#ff6b6b] text-white w-8 h-8 flex items-center justify-center font-bold ml-3 flex-shrink-0">{post.data.category === "terminal" ? ">" : post.data.category === "config" ? "⚙" : post.data.category === "desktop" ? "🖥️" : post.data.category === "hardware" ? "💾" : post.data.category === "network" ? "🌐" : post.data.category === "package-management" ? "📦" : post.data.category === "security" ? "🔒" : "#"}</div>
             </div>
 
             <div class="flex justify-between mt-4">

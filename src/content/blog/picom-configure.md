@@ -1,5 +1,6 @@
 ---
 title: "Picom: Enhance Your Linux Desktop with Smooth Visual Effects"
+category: "desktop"
 description: "Learn how to configure Picom.."
 tags: ["picom", "linux", "customization", "compositor"]
 date: 2025-05-13

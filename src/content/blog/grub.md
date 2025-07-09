@@ -1,5 +1,6 @@
 ---
 title: Minimal GRUB Customization Without grub-customizer
+category: "config"
 date: 2025-07-08
 tags: ["grub", "bootloader", "customization", "arch linux", "linux", "minimalism"]
 ---
@@ -34,7 +35,7 @@ sudo mkdir -p /boot/grub/themes/minimal
 # Create theme.txt
 sudo nano /boot/grub/themes/minimal/theme.txt
 ```
-```ini:theme.txt
+```ini
 desktop-color: "#000000"
 title-color: "#EEEEEE"
 message-color: "#AAAAAA"

@@ -1,5 +1,6 @@
 ---
 title: 'Solving "bash: man: command not found"'
+category: "terminal"
 tags: ["linux", "bash", "troubleshooting", "man-pages", "command-line"]
 date: 2025-06-19
 ---

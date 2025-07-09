@@ -1,5 +1,6 @@
 ---
 title: "Kitty Terminal Config"
+category: "config"
 tags: ["kitty", "terminal", "customization", "themes", "productivity"]
 date: 2025-05-12
 ---
@@ -16,7 +17,7 @@ sudo pacman -S kitty  # Arch installation
 ## **Base Configuration (`~/.config/kitty/kitty.conf`)**
 
 ### Font Configuration
-```conf
+```bash
 font_family      FiraCode Nerd Font
 font_size        12.0
 ```

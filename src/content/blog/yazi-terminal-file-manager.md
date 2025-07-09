@@ -1,5 +1,6 @@
 ---
 title: "Yazi: The Blazing-Fast Terminal File Manager Built in Rust"
+category: "terminal"
 tags: ["yazi", "rust", "terminal", "file manager", "productivity"]
 date: 2025-05-12
 ---

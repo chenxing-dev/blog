@@ -1,5 +1,6 @@
 ---
 title: "Qtile: Customizing Themes and Keybindings"
+category: "desktop"
 tags: ["qtile", "arch linux", "tiling wm", "customization", "theming"]
 date: 2025-05-11
 ---

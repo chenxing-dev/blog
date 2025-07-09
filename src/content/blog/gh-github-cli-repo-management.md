@@ -1,5 +1,6 @@
 ---
 title: "GitHub Workflow with GitHub CLI (gh)"
+category: "terminal"
 tags: ["GitHub CLI", "GitHub", "productivity", "CLI"]
 date: 2025-05-12
 ---

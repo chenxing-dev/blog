@@ -1,5 +1,6 @@
 ---
 title: "Do Simple Tasks Right in Your Linux Terminal"
+category: "terminal"
 tags: ["linux", "terminal", "productivity", "ad-free", "command-line", "bash"]
 date: 2025-06-16
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Image Previews in Kitty"
+category: "terminal"
 tags: ["kitty", "terminal", "images", "CLI", "productivity"]
 date: 2025-05-11
 ---
