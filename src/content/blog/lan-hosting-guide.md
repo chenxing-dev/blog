@@ -1,5 +1,6 @@
 ---
 title: "LAN Hosting Guide: Access Your Projects Across Home Devices"
+description: "Serve local apps to your phone, tablet, and other home devices."
 category: "network"
 tags: [ "networking", "local server", "ssh", "web development", "home networking"]
 date: 2025-07-05

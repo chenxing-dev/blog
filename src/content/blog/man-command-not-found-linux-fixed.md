@@ -1,5 +1,6 @@
 ---
 title: 'Solving "bash: man: command not found"'
+description: "Fix missing manual pages in your terminal"
 category: "terminal"
 tags: ["linux", "bash", "troubleshooting", "man-pages", "command-line"]
 date: 2025-06-19

@@ -7,14 +7,12 @@
 }
 
 :root {
+  /* Neobrutalism palette */
   --color-primary: #ff6b6b;
-  --color-secondary: #4ecdc4;
-  --color-text: #333333;
-  --neobg: #f9f6ee;
-  --neocard: #ffffff;
-  --neoborder: #000000;
-  --neotext: #1e1e1e;
-  --neoaccent: #ff6b6b;
+  --color-secondary: #ffd166;
+  --color-background: #f9f6ee;
+  --color-accent: #2e7d32;
+  --color-blue-steel: #1976d2;
 }
 
 body {

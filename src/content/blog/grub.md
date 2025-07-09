@@ -1,8 +1,9 @@
 ---
 title: Minimal GRUB Customization Without grub-customizer
+description: "Customize your GRUB bootloader by editing configuration files directly."
 category: "config"
 date: 2025-07-08
-tags: ["grub", "bootloader", "customization", "arch linux", "linux", "minimalism"]
+tags: ["grub", "bootloader", "configuration", "customization", "arch linux", "linux", "minimalism"]
 ---
 
 Here's how to manually customize GRUB for a clean, minimal look:

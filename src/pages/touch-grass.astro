@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Touch Grass">
+  <main class="container mx-auto px-4 py-8 max-w-5xl">
+    <div class="text-center mb-6">
+      <h1 class="text-4xl font-bold">Touch Grass™ Certification Program</h1>
+      <p class="text-lg">(ISO 9001 Certified Grass Touching)</p>
+    </div>
+
+    <div class="space-y-6">
+      <section class="border-2 border-black p-4 bg-green-50">
+        <h2 class="text-2xl font-bold mb-2">Step 1: Locate Grass</h2>
+        <p>Identify green, leafy substance outside your dwelling. Typically found beneath the sun.</p>
+        <p><strong>Warning:</strong> May cause temporary blindness to terminal dwellers</p>
+        <p><strong>Warning:</strong> Sudden exposure to fresh air may cause you to question your life choices (like why you spent 3 hours configuring your window manager).</p>
+      </section>
+
+      <section class="border-2 border-black p-4 bg-amber-50">
+        <h2 class="text-2xl font-bold mb-2">Step 2: Initiate Contact Protocol</h2>
+        <p>Extend your hand and make contact.</p>
+        <p class="font-bold uppercase">Actually Touch It!</p>
+      </section>
+
+      <section class="border-2 border-black p-4 bg-blue-50">
+        <h2 class="text-2xl font-bold mb-2">Step 3: Document Achievement</h2>
+        <p>Capture evidence for your GitHub profile. No one will believe you did it otherwise.</p>
+        <div class="mt-4 grid grid-cols-3 gap-2" id="social-proof">
+          <!-- Camera Button -->
+          <button id="camera-btn" class="border-2 border-black aspect-square bg-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors">
+            <span class="text-5xl">📸</span>
+          </button>
+          <!-- Photo Display -->
+          <div id="photo-display" class="border-2 border-black aspect-square bg-gray-200 flex items-center justify-center overflow-hidden">
+            <span id="default-icon" class="text-5xl">🌱</span>
+            <img id="grass-photo" class="hidden object-cover w-full h-full" />
+          </div>
+          <!-- Badges -->
+          <div class="border-2 border-black aspect-square bg-gray-200 flex flex-col items-center justify-center space-y-1">
+            <button class="badge-btn border border-black px-2 py-1 bg-gray-700 text-white text-xs text-center hover:bg-gray-800 transition-colors" data-md="[![Certified Grass Toucher](https://terminalforge.com/badges/grass-badge-1.svg)](https://terminalforge.com/touch-grass)" data-img="1"> #TouchGrass </button>
+            <button class="badge-btn border border-black px-2 py-1 bg-blue-600 text-white text-xs text-center hover:bg-blue-700 transition-colors" data-md="[![Level 2 Grass Interactor](https://terminalforge.com/badges/grass-badge-2.svg)](https://terminalforge.com/touch-grass)" data-img="2"> #Outside </button>
+            <button class="badge-btn border border-black px-2 py-1 bg-green-600 text-white text-xs text-center hover:bg-green-700 transition-colors" data-md="[![Professional Grass Toucher](https://terminalforge.com/badges/grass-badge-3.svg)](https://terminalforge.com/touch-grass)" data-img="3"> #GrassToucher </button>
+            <span class="font-mono text-xs text-center">#TouchGrass<br />#Outside<br />#GrassToucher</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-4 border-black p-6 bg-green-200 text-center">
+        <h2 class="text-3xl font-bold mb-4">Congratulations!</h2>
+        <p class="mb-4">You've earned your Grass Toucher™ certification badge:</p>
+        <div class="inline-block border-4 border-black p-4 bg-white">
+          <div class="w-32 h-32 bg-green-400 rounded-full border-4 border-black flex items-center justify-center mx-auto">
+            <span class="text-4xl">🌿</span>
+          </div>
+          <p class="mt-2 font-bold">Certified Grass Toucher</p>
+          <p class="text-xs">Issued: <span id="date"></span></p>
+        </div>
+        <p class="mt-4">This certification expires in 48 hours. Re-touching required for renewal.</p>
+
+        <button class="mt-6 border-3 border-black px-6 py-3 bg-[#2e7d32] text-white shadow-neobrutal hover:shadow-none transition-all cursor-not-allowed"> Buy NFT Certification Badge </button>
+        <p class="text-xs mt-2">(Blockchain grass touching coming soon)</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const dateElem = document.getElementById("date");
+    if (dateElem) {
+      dateElem.textContent = new Date().toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+  </script>
+</BaseLayout>

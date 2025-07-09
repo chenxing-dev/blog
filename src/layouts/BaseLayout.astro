@@ -1,0 +1,28 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
+// Frontmatter
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="#" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-[#f9f6ee] text-neutral-900 p-4 min-h-screen">
+    <main class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo">
+      <slot />
+    </main>
+  </body>
+</html>
