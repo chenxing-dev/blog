@@ -12,65 +12,280 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="space-y-6">
       <section class="border-2 border-black p-4 bg-green-50">
         <h2 class="text-2xl font-bold mb-2">Step 1: Locate Grass</h2>
-        <p>Identify green, leafy substance outside your dwelling. Typically found beneath the sun.</p>
-        <p><strong>Warning:</strong> May cause temporary blindness to terminal dwellers</p>
-        <p><strong>Warning:</strong> Sudden exposure to fresh air may cause you to question your life choices (like why you spent 3 hours configuring your window manager).</p>
+        <p>
+          Identify green, leafy substance outside your dwelling. Typically found
+          beneath the sun.
+        </p>
+        <p>
+          <strong>Warning:</strong> May cause temporary blindness to terminal dwellers
+        </p>
+        <p>
+          <strong>Warning:</strong> Sudden exposure to fresh air may cause you to
+          question your life choices (like why you spent 3 hours configuring your
+          window manager).
+        </p>
       </section>
 
       <section class="border-2 border-black p-4 bg-amber-50">
-        <h2 class="text-2xl font-bold mb-2">Step 2: Initiate Contact Protocol</h2>
+        <h2 class="text-2xl font-bold mb-2">
+          Step 2: Initiate Contact Protocol
+        </h2>
         <p>Extend your hand and make contact.</p>
         <p class="font-bold uppercase">Actually Touch It!</p>
       </section>
 
       <section class="border-2 border-black p-4 bg-blue-50">
         <h2 class="text-2xl font-bold mb-2">Step 3: Document Achievement</h2>
-        <p>Capture evidence for your GitHub profile. No one will believe you did it otherwise.</p>
+        <p>
+          Capture evidence for your GitHub profile. No one will believe you did
+          it otherwise.
+        </p>
+
+        <div class="mt-2 mb-3 text-sm bg-yellow-100 border border-black p-2">
+          <span class="font-bold">Tip:</span> Click 📸 to capture grass evidence
+        </div>
+
         <div class="mt-4 grid grid-cols-3 gap-2" id="social-proof">
           <!-- Camera Button -->
-          <button id="camera-btn" class="border-2 border-black aspect-square bg-gray-200 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors">
-            <span class="text-5xl">📸</span>
+          <button
+            id="camera-btn"
+            class="group relative border-2 border-black aspect-square bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+            aria-label="Capture grass photo"
+          >
+            <span class="text-4xl">📸</span>
+            <span
+              class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+            >
+              Click to capture
+            </span>
           </button>
+
           <!-- Photo Display -->
-          <div id="photo-display" class="border-2 border-black aspect-square bg-gray-200 flex items-center justify-center overflow-hidden">
-            <span id="default-icon" class="text-5xl">🌱</span>
-            <img id="grass-photo" class="hidden object-cover w-full h-full" />
+          <div
+            id="photo-display"
+            class="relative border-2 border-black aspect-square bg-gray-100 flex items-center justify-center overflow-hidden"
+          >
+            <div
+              id="loading"
+              class="absolute inset-0 bg-gray-300 flex items-center justify-center hidden"
+            >
+              <div
+                class="animate-spin rounded-full h-8 w-8 border-b-2 border-black"
+              >
+              </div>
+            </div>
+            <span id="default-icon" class="text-4xl">🌱</span>
+            <img
+              id="grass-photo"
+              class="hidden object-cover w-full h-full"
+              loading="lazy"
+            />
           </div>
-          <!-- Badges -->
-          <div class="border-2 border-black aspect-square bg-gray-200 flex flex-col items-center justify-center space-y-1">
-            <button class="badge-btn border border-black px-2 py-1 bg-gray-700 text-white text-xs text-center hover:bg-gray-800 transition-colors" data-md="[![Certified Grass Toucher](https://terminalforge.com/badges/grass-badge-1.svg)](https://terminalforge.com/touch-grass)" data-img="1"> #TouchGrass </button>
-            <button class="badge-btn border border-black px-2 py-1 bg-blue-600 text-white text-xs text-center hover:bg-blue-700 transition-colors" data-md="[![Level 2 Grass Interactor](https://terminalforge.com/badges/grass-badge-2.svg)](https://terminalforge.com/touch-grass)" data-img="2"> #Outside </button>
-            <button class="badge-btn border border-black px-2 py-1 bg-green-600 text-white text-xs text-center hover:bg-green-700 transition-colors" data-md="[![Professional Grass Toucher](https://terminalforge.com/badges/grass-badge-3.svg)](https://terminalforge.com/touch-grass)" data-img="3"> #GrassToucher </button>
-            <span class="font-mono text-xs text-center">#TouchGrass<br />#Outside<br />#GrassToucher</span>
+
+          <!-- Badges Container -->
+          <div
+            class="badge-container group relative border-2 border-black aspect-square bg-gray-100 flex flex-col items-center justify-center space-y-2"
+          >
+            <button
+              class="badge-btn group hover:opacity-90 transition-opacity cursor-pointer"
+              data-md="[![Touch Grass](https://img.shields.io/badge/Touch-Grass-brightgreen)](https://blog.chenxing.dev/touch-grass)"
+              aria-label="Copy Touch Grass badge"
+            >
+              <img
+                src="https://img.shields.io/badge/Touch-Grass-brightgreen"
+                alt="Touch Grass"
+                class="h-6"
+              />
+            </button>
+            <button
+              class="badge-btn group hover:opacity-90 transition-opacity cursor-pointer"
+              data-md="[![Certified Grass Toucher](https://img.shields.io/badge/Certified-Grass_Toucher-green)](https://blog.chenxing.dev/touch-grass)"
+              aria-label="Copy Certified Grass Toucher badge"
+            >
+              <img
+                src="https://img.shields.io/badge/Certified-Grass_Toucher-green"
+                alt="Certified Grass Toucher"
+                class="h-6"
+              />
+            </button>
+            <button
+              class="badge-btn group hover:opacity-90 transition-opacity cursor-pointer"
+              data-md="[![IRL Verified](https://img.shields.io/badge/IRL-Verified-blue)](https://blog.chenxing.dev/touch-grass)"
+              aria-label="Copy IRL Verified badge"
+            >
+              <img
+                src="https://img.shields.io/badge/IRL-Verified-blue"
+                alt="IRL Verified"
+                class="h-6"
+              />
+            </button>
+            <!-- Shared Tooltip -->
+            <span
+              id="badge-tooltip"
+              class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/90 text-white text-xs px-2 py-1 opacity-0 group-hover:opacity-90 transition-opacity pointer-events-none"
+            >
+              Click to copy
+            </span>
           </div>
+        </div>
+        <div
+          id="flash"
+          class="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-200"
+        >
         </div>
       </section>
 
-      <section class="border-4 border-black p-6 bg-green-200 text-center">
+      <!-- Certification Section - Hidden Initially -->
+      <section
+        id="certification-section"
+        class="border-4 border-black p-6 bg-green-200 text-center hidden"
+      >
         <h2 class="text-3xl font-bold mb-4">Congratulations!</h2>
-        <p class="mb-4">You've earned your Grass Toucher™ certification badge:</p>
+        <h3 class="text-2xl font-bold mb-4">Grass Interaction Complete</h3>
+        <p class="mb-4">
+          You've earned your official Grass Toucher™ certification:
+        </p>
         <div class="inline-block border-4 border-black p-4 bg-white">
-          <div class="w-32 h-32 bg-green-400 rounded-full border-4 border-black flex items-center justify-center mx-auto">
+          <div
+            class="w-32 h-32 bg-green-300 rounded-full border-4 border-black flex items-center justify-center mx-auto"
+          >
             <span class="text-4xl">🌿</span>
           </div>
           <p class="mt-2 font-bold">Certified Grass Toucher</p>
           <p class="text-xs">Issued: <span id="date"></span></p>
         </div>
-        <p class="mt-4">This certification expires in 48 hours. Re-touching required for renewal.</p>
+        <p class="mt-4">
+          This certification expires in 48 hours. Re-touching required for
+          renewal.
+        </p>
 
-        <button class="mt-6 border-3 border-black px-6 py-3 bg-[#2e7d32] text-white shadow-neobrutal hover:shadow-none transition-all cursor-not-allowed"> Buy NFT Certification Badge </button>
-        <p class="text-xs mt-2">(Blockchain grass touching coming soon)</p>
+        <button
+          class="mt-6 border-3 border-black px-6 py-3 bg-[#2e7d32] text-white shadow-neobrutal hover:shadow-none transition-all cursor-not-allowed"
+        >
+          Buy NFT Certification Badge
+        </button>
       </section>
     </div>
   </main>
 
   <script>
+    // Set certification date
     const dateElem = document.getElementById("date");
     if (dateElem) {
       dateElem.textContent = new Date().toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
-        year: "numeric"
+        year: "numeric",
+      });
+    }
+
+    // Grass photos
+    const grassPhotos = [
+      "https://images.unsplash.com/photo-1567621301854-85b95d32bbf3?w=300",
+      "https://images.unsplash.com/photo-1587655239252-0ffc8d1f4de9?w=300",
+      "https://images.unsplash.com/photo-1527837730880-e99d8cfe46a8?w=300",
+      "https://images.unsplash.com/photo-1588701047364-ebd987f3166d?w=300",
+      "https://images.unsplash.com/photo-1489065094455-c2d576ff27a0?w=300",
+    ];
+
+    // Preload images in background
+    grassPhotos.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+
+    // Camera interaction
+    const cameraBtn = document.getElementById("camera-btn");
+    const photoDisplay = document.getElementById("photo-display");
+    const grassPhoto = document.getElementById(
+      "grass-photo",
+    ) as HTMLImageElement | null;
+    const defaultIcon = document.getElementById("default-icon");
+    const flash = document.getElementById("flash");
+    const loadingIndicator = document.getElementById("loading");
+    const certificationSection = document.getElementById(
+      "certification-section",
+    );
+
+    if (
+      cameraBtn &&
+      flash &&
+      grassPhoto &&
+      defaultIcon &&
+      photoDisplay &&
+      loadingIndicator &&
+      certificationSection
+    ) {
+      cameraBtn.addEventListener("click", () => {
+        // Show loading indicator
+        loadingIndicator.classList.remove("hidden");
+        defaultIcon.classList.add("hidden");
+        grassPhoto.classList.add("hidden");
+
+        // Flash effect
+        flash.classList.remove("opacity-0");
+        setTimeout(() => flash.classList.add("opacity-0"), 150);
+
+        // Get random grass photo
+        const randomIndex = Math.floor(Math.random() * grassPhotos.length);
+        grassPhoto.src = grassPhotos[randomIndex];
+
+        // Create new image to ensure it's loaded
+        const newImage = new Image();
+        newImage.src = grassPhotos[randomIndex];
+        newImage.onload = () => {
+          grassPhoto.src = grassPhotos[randomIndex];
+          grassPhoto.classList.remove("hidden");
+          loadingIndicator.classList.add("hidden");
+
+          // Add flash effect to photo display
+          photoDisplay.classList.add("bg-white");
+          setTimeout(() => photoDisplay.classList.remove("bg-white"), 200);
+
+          // Show certification section
+          certificationSection.classList.remove("hidden");
+        };
+      });
+    }
+
+    // Badge interaction
+    const badgeButtons = document.querySelectorAll(".badge-btn");
+    const badgeTooltip = document.getElementById("badge-tooltip");
+    let tooltipTimeout: NodeJS.Timeout | null = null;
+
+    badgeButtons.forEach((button) => {
+      button.addEventListener("click", (_) => {
+        const markdown = button.getAttribute("data-md");
+
+        // Copy markdown to clipboard
+        if (markdown && badgeTooltip) {
+          navigator.clipboard.writeText(markdown).then(() => {
+            // Update tooltip text
+            badgeTooltip.textContent = "Copied!";
+            badgeTooltip.classList.remove("opacity-0");
+
+            // Clear any existing timeout
+            if (tooltipTimeout) {
+              clearTimeout(tooltipTimeout);
+            }
+
+            // Set timeout to revert tooltip
+            tooltipTimeout = setTimeout(() => {
+              badgeTooltip.textContent = "Click to copy";
+              badgeTooltip.classList.add("opacity-0");
+            }, 2000);
+          });
+        }
+      });
+    });
+
+    // Reset tooltip on mouse leave
+    const badgeContainer = document.querySelector(".badge-container");
+
+    if (badgeContainer && badgeTooltip) {
+      badgeContainer.addEventListener("mouseleave", () => {
+        badgeTooltip.textContent = "Click to copy";
+        badgeTooltip.classList.add("opacity-0");
       });
     }
   </script>
