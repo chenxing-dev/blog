@@ -4,6 +4,7 @@ slug: raspberry-pi-4b-minimal-setup
 description: "Step-by-step guide to installing Raspberry Pi OS Lite, configuring terminal appearance, and optimizing for headless use"
 tags: ["raspberry pi", "linux", "terminal", "configuration"]
 category: "hardware"
+date: 2025-07-11
 ---
 
 ![Raspberry Pi 4B with cables connected](/pi4b-setup.jpg)  
