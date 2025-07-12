@@ -1,12 +1,13 @@
-# Blog 🚀
+# Neobrutalism Style Blog 🚀
 
-**Markdown-to-Blog with Astro + TailwindCSS**  
+![Preview](preview.png)
+
+A minimalist-neobrutalism style blog that transforms Markdown notes into a website deployed to GitHub Pages. Built with Astro + TailwindCSS, featuring bold typography, sharp borders, and a vibrant color scheme. 
+
+**🛠️ Tech Stack**  
 [![Astro](https://img.shields.io/badge/Astro-5.7.11-FF5D01?logo=astro)](https://astro.build)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.5-06B6D4?logo=tailwind-css)](https://tailwindcss.com)
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222?logo=github)](https://pages.github.com)
-
-A minimalist blog pipeline that transforms Markdown notes into a website deployed to GitHub Pages. 
-
 
 ## Installation ⚙️
 
@@ -24,8 +25,10 @@ npm run dev
    ```markdown
    ---
    title: "Your Post Title"
-   date: 2023-01-01
-   tags: ["linux", "programming"]
+   date: 2025-01-01
+   description: "Brief description of your post"
+   category: "terminal"  # terminal/config/desktop/etc.
+   tags: ["tag1", "tag2"]
    ---
    ## Your Content Here
    ```
@@ -48,15 +51,19 @@ npm run dev
 blog/
 ├── src/
 │   ├── components/
+│   │   ├── Header.astro
+│   │   └── GithubIcon.astro
 │   ├── content/
 │   │   └── blog/          # Markdown posts
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
-│       ├── [id].astro # Dynamic post routes
+│       ├── [id].astro     # Dynamic post routes
 │       └── 404.astro
 │       └── index.astro
-│   ├── styles/
+│   ├── lib/
+│   │   └── readTime.js    # Read time calculator
+│   └── styles/
 └── astro.config.mjs
 ```
 
