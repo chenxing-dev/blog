@@ -37,7 +37,14 @@ date: 2025-07-11
 
 ### Connect and Login
 1. Insert SD card into Pi
-2. Connect power, mouse, keyboard, and HDMI
+2. Connect power, mouse, keyboard
+
+#### Method 1: Connect HDMI
+
+#### Method 2: Connect via SSH
+
+- `ssh pi@192.168.1.xx`  
+- Default credentials: `pi/raspberry` 
 
 ### Initial Setup Commands
 ```bash
@@ -103,3 +110,41 @@ ascii_distro="raspbian_small"
 ```bash
 echo "echo && neofetch" >> ~/.bashrc
 ```
+## Ensuring Raspberry Pi Readiness for Backend Hosting  
+
+#### **1. Essential Service Installation**  
+**Objective:** Install core hosting dependencies  
+```bash  
+# Install Python/NodeJS runtimes  
+sudo apt install python3-pip nodejs npm  
+```  
+
+#### **2. Production Testing**  
+**Objective:** Validate deployment with test project  
+
+**A. Sample NodeJS App:**  
+```javascript  
+// ~/projects/test-app/server.js  
+const http = require('http');  
+const port = 8000;  
+
+const server = http.createServer((req, res) => {  
+  res.end(` Server operational | ${process.platform}`);  
+});  
+
+server.listen(port);  
+```  
+
+**B. PM2 Process Manager:**  
+```bash  
+sudo npm install pm2 -g  
+pm2 start server.js --name "test-app"  
+pm2 save  
+pm2 startup  # Auto-start on boot  
+```  
+
+**Access Test:**  
+```  
+curl http://localhost:8000  
+# Should return: " Server operational | linux"  
+```  
