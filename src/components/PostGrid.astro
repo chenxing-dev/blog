@@ -1,0 +1,83 @@
+---
+import { type Post, getPostIcon } from "../lib/postUtils";
+
+export interface Props {
+    posts: Post[];
+    accentColor?: string;
+    borderColor?: string;
+    cornerColor?: string;
+    postNumberColor?: string;
+}
+
+const {
+    posts,
+    accentColor = "#FFD166",
+    borderColor = "#000",
+    cornerColor = "#2e7d32", // Default green
+    postNumberColor = "#ff6b6b", // Default pink
+} = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    {
+        posts.map((post, index) => (
+            <a
+                href={`/${post.id}`}
+                class={`relative flex flex-col h-full border-3 p-4 md:p-5 shadow-neo hover:shadow-none bg-white transition-all hover:translate-y-0.5 group`}
+                style={`border-color: ${borderColor};`}
+            >   
+                <div
+                    class="absolute top-0 left-0 w-0 h-0 border-t-0 border-r-0 group-hover:border-t-[25px] group-hover:border-r-[25px]"
+                    style={`border-top-color: ${cornerColor}; border-right-color: transparent; transition: all;`}
+                />
+                <div class="flex justify-between items-start">
+                    <h2 class="text-lg md:text-2xl font-black mb-3 block">
+                        <span
+                            class="w-8 h-8 items-center justify-center font-bold flex-shrink-0"
+                            style={`color: ${accentColor};`}
+                        >
+                            {getPostIcon(post.data.category)}
+                        </span>
+                        <span>{post.data.title}</span>
+                    </h2>
+                    <div
+                        class={`border-3 font-bold ml-3 flex-shrink-0 flex items-center justify-center`}
+                        style={`border-color: ${borderColor}; background: ${postNumberColor}; color: #fff; width: 2rem; height: 2rem;`}
+                    >
+                        {index + 1}
+                    </div>
+                </div>
+                <div class="flex-grow" />
+                <div class="flex justify-between mt-auto pt-1 md:pt-3 items-center">
+                    <span
+                        class="px-2 flex items-center h-8 text-sm font-semibold"
+                        style={`background: ${borderColor}; color: #fff;`}
+                    >
+                        {post.data.date.toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                        })}
+                    </span>
+                    <span
+                        class="border-3 px-2 flex items-center h-8 text-sm font-bold gap-2"
+                        style={`border-color: ${borderColor}; background: ${accentColor};`}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        {post.data.readTime} MIN READ
+                    </span>
+                </div>
+            </a>
+        ))
+    }
+</div>

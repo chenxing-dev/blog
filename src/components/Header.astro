@@ -4,7 +4,27 @@ import GithubIcon from "./GithubIcon.astro";
 
 <header class="p-6 border-b-3 border-black bg-white">
   <nav class="flex justify-between items-center gap-4">
-    <a href="/" class="text-xl md:text-3xl font-bold border-3 border-black px-3 md:px-4 py-1.5 bg-[#ff6b6b] text-white shadow-neo hover:shadow-none transition-all hover:translate-y-0.5">陈刑's TECH GUIDES</a>
+    <div class="flex gap-2 items-end">
+      <a
+        href="/"
+        class="text-xl md:text-3xl font-bold border-3 border-black px-3 md:px-4 py-1.5 bg-[#ff6b6b] text-white shadow-neo hover:shadow-none transition-all hover:translate-y-0.5"
+        >陈刑's TECH GUIDES</a
+      >
+      <div class="text-sm md:text-base italic text-gray-600 flex gap-2">
+        <a
+          href="/linux-guides"
+          class="border-3 border-black px-3 py-1.5 bg-[#FFD166] text-black font-bold rounded shadow-neo hover:shadow-none transition-all hover:translate-y-0.5 h-full"
+        >
+          Linux Guides
+        </a>
+        <a
+          href="/web-dev"
+          class="border-3 border-black px-3 py-1.5 bg-[#AEEEEE] text-black font-bold rounded shadow-neo hover:shadow-none transition-all hover:translate-y-0.5 h-full"
+        >
+          Web Dev Guides
+        </a>
+      </div>
+    </div>
     <GithubIcon repoUrl="https://github.com/chenxing-dev/blog" />
   </nav>
 </header>

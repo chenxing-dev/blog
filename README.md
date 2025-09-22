@@ -21,7 +21,7 @@ npm run dev
 ## Usage 📝
 
 1. **Create New Posts**  
-   Add Markdown files to `src/content/blog/`:
+   Add Markdown files to `src/content/linux/`:
    ```markdown
    ---
    title: "Your Post Title"
@@ -54,7 +54,8 @@ blog/
 │   │   ├── Header.astro
 │   │   └── GithubIcon.astro
 │   ├── content/
-│   │   └── blog/          # Markdown posts
+│   │   ├── linux/          # Linux-related posts
+│   │   └── web/            # Web development posts
 │   ├── layouts/
 │   │   └── Layout.astro
 │   └── pages/
