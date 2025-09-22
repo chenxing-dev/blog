@@ -1,4 +1,10 @@
 - [ ] Implement the landing page to showcase recent posts and categories.
+  - [ ] Modernism-inspired design.
+  - [ ] Use a strict grid layout.
+  - [ ] Geometric shapes.
+  - [ ] A limited set of 10 fun colors.
+  - [ ] Create arch linux, programming, and web development icons in SVG format.
+  - [ ] Create order and optimism through design.
 - [ ] Add a search functionality to filter blog posts by title or tags.
 - [ ] Writings on web development topics in `src/content/web/`.
   - [ ] Building my OS-style portfolio site with Vue 3 and GSAP.
