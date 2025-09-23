@@ -29,3 +29,17 @@
       - [ ] Tips for new Linux users.
         - [ ] Getting started with the command line.
         - [ ] Finding help and documentation.
+
+### Color Palette
+
+#efd7b3
+#ca340a
+#ee5104
+#eb790a
+#e07c6b
+#f7b210
+#618d20
+#387c2c
+#70b1a1
+#2c8182
+#093351

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Transparent background -->
+  <rect width="200" height="200" fill="none" />
+
+  <!-- Symmetric orange flower -->
+  <!-- Petals at 72° increments around (100,100) -->
+  <circle cx="100" cy="40" r="40" fill="#ff7f50" />
+  <circle cx="157.1" cy="81.5" r="40" fill="#ff7f50" />
+  <circle cx="135.3" cy="148.5" r="40" fill="#ff7f50" />
+  <circle cx="64.7" cy="148.5" r="40" fill="#ff7f50" />
+  <circle cx="42.9" cy="81.5" r="40" fill="#ff7f50" />
+
+  <!-- Deep navy flower center -->
+  <circle cx="100" cy="100" r="36" fill="#001f3f" />
+</svg>

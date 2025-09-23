@@ -1,0 +1,98 @@
+---
+// This is the new index page,
+// with modernism design,
+// used a strict grid layout,
+// geometric shapes of the Bauhaus style,
+// a bright palette of the following colors:
+// Sunbleached Sand #efd7b3
+// Rustic Clay #ca340a
+// Vibrant Mandarin #ee5104
+// Golden Poppy #eb790a
+// Dusty Coral #e07c6b
+// Sunflower Yellow #f7b210
+// Moss Green #618d20
+// Forest Green #387c2c
+// Seafoam Green #70b1a1
+// Deep Sea Green #2c8182
+// Abyssal Blue #093351
+import "../styles/global.new.css";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/icons/flower.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Hello World</title>
+    </head>
+    <body class="bg-[#efd7b3] min-h-screen max-h-screen overflow-hidden">
+        <main class="">
+            <!-- Responsive grid of square cells with random colors from palette -->
+            <section
+                id="color-grid"
+                class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8"
+            >
+            </section>
+        </main>
+
+        <script is:inline>
+            // Color palette (bright)
+            const palette = [
+                "#efd7b3", // Sunbleached Sand
+                "#ca340a", // Rustic Clay
+                "#ee5104", // Vibrant Mandarin
+                "#eb790a", // Golden Poppy
+                "#e07c6b", // Dusty Coral
+                "#f7b210", // Sunflower Yellow
+                "#618d20", // Moss Green
+                "#387c2c", // Forest Green
+                "#70b1a1", // Seafoam Green
+                "#2c8182", // Deep Sea Green
+                "#093351", // Abyssal Blue
+            ];
+
+            const grid = document.getElementById("color-grid");
+            const TARGET_COUNT = 160; // enough to fill most screens; grid is responsive
+
+            function randomColor() {
+                return palette[Math.floor(Math.random() * palette.length)];
+            }
+
+            function createCell(color) {
+                const div = document.createElement("div");
+                // aspect-square keeps perfect squares across breakpoints
+                div.className = "aspect-square w-full";
+                div.style.backgroundColor = color;
+                div.setAttribute("role", "presentation");
+                return div;
+            }
+
+            function populate(count = TARGET_COUNT) {
+                // Avoid duplicating on hot reloads
+                if (grid.childElementCount >= count) return;
+                const frag = document.createDocumentFragment();
+                for (let i = 0; i < count; i++) {
+                    frag.appendChild(createCell(randomColor()));
+                }
+                grid.appendChild(frag);
+            }
+
+            // Initial render
+            populate();
+
+            // Optional: re-randomize colors on resize for a dynamic feel
+            let resizeT;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeT);
+                resizeT = setTimeout(() => {
+                    Array.from(grid.children).forEach((el) => {
+                        el.style.backgroundColor = randomColor();
+                    });
+                }, 150);
+            });
+        </script>
+    </body>
+</html>
