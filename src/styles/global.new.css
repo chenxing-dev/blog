@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
+
+@theme {
+    /* Modernist bright palette */
+    --color-gold: #f7b210;
+    --color-sand: #efd7b3;
+    --color-amber: #eb790a;
+    --color-flame: #ee5104;
+    --color-coral: #e07c6b;
+    --color-vermilion: #ca340a;
+    --color-sage: #618d20;
+    --color-pine: #387c2c;
+    --color-mint: #70b1a1;
+    --color-turquoise: #2c8182;
+    --color-river: #225287;
+    --color-midnight: #093351;
+}

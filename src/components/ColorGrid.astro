@@ -1,0 +1,167 @@
+---
+interface Props {
+    palette: string[];
+    count?: number;
+    colsClass?: string; // grid columns/classes for responsiveness
+    cellClass?: string; // class applied to each cell
+    ariaLabel?: string;
+    seed?: number; // optional seed for deterministic color selection
+    overrides?: Array<{
+        row: number; // 1-based row start
+        col: number; // 1-based column start
+        rowSpan?: number;
+        colSpan?: number;
+        color?: string; // background color for the spanned item
+        class?: string; // extra classes for the spanned item
+        text?: string; // optional text content
+        html?: string; // optional raw HTML content (trusted only)
+    }>; 
+}
+
+const {
+    palette,
+    count = 168,
+    colsClass = "grid grid-cols-5",
+    cellClass = "aspect-square w-full",
+    ariaLabel = "color-grid",
+    seed,
+    overrides = [],
+} = Astro.props as Props;
+
+function mulberry32(a: number) {
+    return function () {
+        let t = (a += 0x6d2b79f5) | 0;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+const rng = typeof seed === "number" ? mulberry32(seed) : Math.random;
+
+function parseColsFromClass(cls: string): number | undefined {
+    const matches = Array.from(cls.matchAll(/grid-cols-(\d+)/g)).map((m) =>
+        Number(m[1]),
+    );
+    if (matches.length === 0) return undefined;
+    // Use the largest declared grid-cols as the effective column count (desktop-first)
+    return Math.max(...matches);
+}
+
+// Determine effective columns and grid size considering overrides
+const effectiveCols = parseColsFromClass(colsClass) || Math.max(palette.length, 1);
+
+// Total cells the overrides occupy
+const overrideCoverage = overrides.reduce((sum, o) => sum + Math.max(1, o.rowSpan ?? 1) * Math.max(1, o.colSpan ?? 1), 0);
+
+// We will render `count` auto cells in addition to overrides
+const totalSlots = count + overrideCoverage;
+
+// Compute number of rows needed to place everything
+let rows = Math.max(1, Math.ceil(totalSlots / effectiveCols));
+for (const o of overrides) {
+    const endRow = Math.max(1, o.row) + Math.max(1, o.rowSpan ?? 1) - 1;
+    if (endRow > rows) rows = endRow;
+}
+
+// Occupancy and color matrices (row-major)
+const occ: boolean[][] = Array.from({ length: rows }, () => Array(effectiveCols).fill(false));
+const gridColors: (string | undefined)[][] = Array.from({ length: rows }, () => Array<string | undefined>(effectiveCols).fill(undefined));
+
+// Mark overrides as occupied and set colors if provided
+for (const o of overrides) {
+    const r0 = Math.max(1, o.row) - 1;
+    const c0 = Math.max(1, o.col) - 1;
+    const rs = Math.max(1, o.rowSpan ?? 1);
+    const cs = Math.max(1, o.colSpan ?? 1);
+    for (let dr = 0; dr < rs; dr++) {
+        const r = r0 + dr;
+        if (r < 0 || r >= rows) continue;
+        for (let dc = 0; dc < cs; dc++) {
+            const c = c0 + dc;
+            if (c < 0 || c >= effectiveCols) continue;
+            occ[r][c] = true;
+            if (o.color) gridColors[r][c] = o.color;
+        }
+    }
+}
+
+// Colors for auto cells in DOM order (row-major skipping occupied)
+const colors: string[] = [];
+
+if (palette.length === 0) {
+    // Nothing to render
+} else if (palette.length === 1) {
+    // Only one color available; adjacency rule cannot be satisfied in general.
+    outer1: for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < effectiveCols; c++) {
+            if (occ[r][c]) continue;
+            if (colors.length >= count) break outer1;
+            gridColors[r][c] = palette[0];
+            colors.push(palette[0]);
+        }
+    }
+} else {
+    if (palette.length === 2) {
+        // Checkerboard, skipping occupied cells
+        const startIdx = seed && seed % 2 !== 0 ? 1 : 0;
+        outer2: for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < effectiveCols; c++) {
+                if (occ[r][c]) continue;
+                if (colors.length >= count) break outer2;
+                const idx = (r + c + startIdx) % 2;
+                const clr = palette[idx];
+                gridColors[r][c] = clr;
+                colors.push(clr);
+            }
+        }
+    } else {
+        // palette.length >= 3: greedy pick excluding left/top neighbors, respecting overrides
+        outer3: for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < effectiveCols; c++) {
+                if (occ[r][c]) continue; // occupied by override
+                if (colors.length >= count) break outer3;
+                const left = c > 0 ? gridColors[r][c - 1] : undefined;
+                const top = r > 0 ? gridColors[r - 1][c] : undefined;
+                const forbidden = new Set([left, top].filter(Boolean) as string[]);
+                const candidates = palette.filter((clr) => !forbidden.has(clr));
+                const pool = candidates.length > 0 ? candidates : palette;
+                const pick = pool[Math.floor(rng() * pool.length)];
+                gridColors[r][c] = pick;
+                colors.push(pick);
+            }
+        }
+    }
+}
+---
+
+<section role="grid" aria-label={ariaLabel} class={colsClass}>
+    {
+        overrides.map((o) => {
+            const row = Math.max(1, o.row);
+            const col = Math.max(1, o.col);
+            const rowSpan = Math.max(1, o.rowSpan ?? 1);
+            const colSpan = Math.max(1, o.colSpan ?? 1);
+            const style = `grid-row: ${row} / span ${rowSpan}; grid-column: ${col} / span ${colSpan};${o.color ? ` background-color: ${o.color};` : ''}`;
+            if (o.html) {
+                return (
+                    <div role="presentation" class={o.class ?? cellClass} style={style} set:html={o.html} />
+                );
+            }
+            return (
+                <div role="presentation" class={o.class ?? cellClass} style={style}>
+                    {o.text}
+                </div>
+            );
+        })
+    }
+    {
+        colors.map((color) => (
+            <div
+                role="presentation"
+                class={cellClass}
+                style={`background-color: ${color};`}
+            />
+        ))
+    }
+</section>
