@@ -1,5 +1,6 @@
-- [ ] Implement the landing page to showcase recent posts and categories.
-- [ ] Add a search functionality to filter blog posts by title or tags.
+- [x] Implement the landing page.
+- [ ] Add a search functionality
+  - [ ] Filter blog posts by title or tags.
 - [ ] Writings on web development topics in `src/content/web/`.
   - [ ] Building my OS-style portfolio site with Vue 3 and GSAP.
   - [ ] Comparing React, Vue, and Svelte for a small project.
