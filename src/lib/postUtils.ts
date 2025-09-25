@@ -29,6 +29,7 @@ export function getPostIcon(category?: string) {
         case "hardware": return "💾";
         case "programming": return "👨‍💻";
         case "web-dev": return "💻";
+        case "web-development": return "💻";
         case "network": return "🌐";
         case "security": return "🔒";
         case "package-management": return "📦";
