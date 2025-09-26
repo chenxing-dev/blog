@@ -245,153 +245,137 @@ export const APPS = {
 ```
 
 ### Desktop Component Implementation
+
 The main desktop component tied everything together:
 
 ```vue
+// Desktop.vue
 <template>
-  <div class="desktop">
-    <!-- Desktop background and icons -->
-    <div class="desktop-icons">
-      <div 
-        v-for="app in availableApps" 
-        :key="app.id"
-        class="desktop-icon"
-        @dblclick="openApp(app)"
-      >
-        <span class="icon">{{ app.icon }}</span>
-        <span class="label">{{ app.title }}</span>
-      </div>
+    <div :class="settings.theme" class="relative w-screen h-dvh overflow-hidden select-none text-secondary">
+        <!-- Desktop background and icons -->
+        <Wallpaper />
+        <!-- Memorize icons grid: it won't update unless availableApps ref changes -->
+        <div v-memo="{ availableApps }" class="absolute w-full min-w-72
+            justify-items-center 
+            p-2 md:p-12 
+            grid gap-2 md:gap-4 grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-14">
+            <DesktopIcon v-for="app in availableApps" :key="app.id" :id="app.id" :label="app.label"
+                @open="openWindow" />
+        </div>
+
+        <!-- Window Manager -->
+        <WindowManager :windows="windows" @close="closeWindow" @focus="focusWindow" />
     </div>
-    
-    <!-- Windows -->
-    <Window 
-      v-for="window in windows" 
-      :key="window.id"
-      :window="window"
-    />
-  </div>
 </template>
 
 <script setup lang="ts">
 import { useDesktop } from '../composables/useDesktop'
-import { APPS } from '../data/apps-registry'
+import { getDesktopApps } from "@/config/apps-registry";
 import Window from './Window.vue'
 
-const { windows, openWindow } = useDesktop()
-const availableApps = Object.values(APPS)
-
-const openApp = (appConfig) => {
-  openWindow(appConfig)
-}
+const { windows, openWindow, closeWindow, focusWindow } = useDesktop();
+const availableApps = markRaw(getDesktopApps());
 </script>
-```
-
-## Key Implementation Details
-
-### Window Management System
-The core challenge was managing multiple windows with proper z-index stacking:
-
-```typescript
-// Enhanced window management
-const closeWindow = (windowId: string) => {
-  const windowIndex = windows.value.findIndex(w => w.id === windowId)
-  if (windowIndex > -1) {
-    const windowElement = document.querySelector(`[data-window="${windowId}"]`)
-    
-    if (windowElement) {
-      closeAnimation(windowElement, () => {
-        windows.value.splice(windowIndex, 1)
-        if (activeWindow.value === windowId) {
-          activeWindow.value = windows.value.length > 0 
-            ? windows.value[windows.value.length - 1].id 
-            : null
-        }
-      })
-    } else {
-      windows.value.splice(windowIndex, 1)
-    }
-  }
-}
-```
-
-### Animation Integration
-Integrating GSAP animations with Vue's lifecycle hooks:
-
-```vue
-<script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { useWindowAnimations } from '../composables/useWindowAnimations'
-
-const props = defineProps(['window'])
-const windowElement = ref<HTMLElement | null>(null)
-const { openAnimation } = useWindowAnimations()
-
-onMounted(() => {
-  if (windowElement.value) {
-    openAnimation(windowElement.value)
-  }
-})
-</script>
-
-<template>
-  <div ref="windowElement" :data-window="window.id" class="window-container">
-    <!-- Window content -->
-  </div>
-</template>
 ```
 
 ## Performance Considerations
 
-### Optimizing Draggable Performance
-
-For optimal performance with `vue-draggable-resizable`, I configured it to ignore certain elements during drag operations:
-
-```typescript
-const dragConfig = {
-  resizable: false,
-  filters: ['.window-content', 'button', 'a'], // Ignore these elements for drag
-  preventDeactivation: true,
-  activeClass: 'window-active'
-}
-```
-
 ### Efficient Reactivity
-Using Vue's reactivity system effectively prevented unnecessary re-renders:
+
+We can optimize performance by using `markRaw` or `shallowRef` for large objects or arrays that don't require deep reactivity. Here, I kept the icons grid static using `markRaw` to prevent unnecessary re-renders:
 
 ```typescript
-import { shallowRef, computed } from 'vue'
+import { markRaw } from "vue";
 
-// Using shallowRef for better performance with object arrays
-const windows = shallowRef([])
+// Make the apps list non-reactive
+// as it doesn't change during runtime
+// and to avoid unnecessary re-renders
+const availableApps = markRaw(getDesktopApps());
 
-// Computed properties for efficient updates
-const windowStack = computed(() => 
-  windows.value.slice().sort((a, b) => a.zIndex - b.zIndex)
-)
+<!-- Memorize icons grid: it won't update unless availableApps ref changes -->
+<div v-memo="{ availableApps }" class="absolute w-full min-w-72
+    justify-items-center 
+    p-2 md:p-12 
+    grid gap-2 md:gap-4 grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-14">
+    <DesktopIcon v-for="app in availableApps" :key="app.id" :id="app.id" :label="app.label"
+        @open="openWindow" />
+</div>
 ```
 
 ## Challenges Encountered
 
-### Z-index Management
-Ensuring the active window always stayed on top:
+### Window positioning and viewport safety
+
+When opening new windows, I wanted them to appear at random positions. However, random positions can spawn off-screen on small displays. To address this, I calculated safe boundaries based on the window size and viewport dimensions:
 
 ```typescript
-const ensureTopWindow = (windowId: string) => {
-  const maxZIndex = Math.max(...windows.value.map(w => w.zIndex), 1000)
-  windows.value = windows.value.map(window => 
-    window.id === windowId 
-      ? { ...window, zIndex: maxZIndex + 1 }
-      : window
-  )
+const position = {
+  x: Math.random() * (window.innerWidth - (app.width || DEFAULT_WIDTH)),
+  y: Math.random() * (window.innerHeight - (app.height || DEFAULT_HEIGHT))
+}
+```
+
+Considering mobile responsiveness, I disabled dragging on smaller screens to ensure usability. 
+
+### Persisted state pitfalls
+
+Using `useStorage` from `@vueuse/core` to persist open windows was convenient, but I had to clean up invalid states when apps were removed from the registry. I sanitized the stored windows on load:
+
+```typescript
+// useDesktop.ts
+
+import { ref } from 'vue'
+import { useStorage } from '@vueuse/core'
+import { APPS } from '@/config/apps-registry'
+import type { AppItem, WindowItem } from '@/types'
+
+// Persistent storage for open windows
+const windows = useStorage<WindowItem[]>("os-windows", []);
+
+// Convert persisted window to full window object
+export const sanitizeAndRehydrate = (stored: StoredWindow[] | unknown): WindowItem[] => {
+  const list = Array.isArray(stored) ? stored : [];
+
+  const mapped: WindowItem[] = [];
+  for (const item of list) {
+    const app = getAppById(item.appId);
+    if (!app) continue; // Clean out invalid apps
+
+    // Sanitize position
+    const position = {
+      x: clamp(item.position.x, 0, window.innerWidth - (app.width || DEFAULT_WIDTH)),
+      y: clamp(item.position.y, 0, window.innerHeight - (app.height || DEFAULT_HEIGHT))
+    };
+
+    mapped.push({
+      id: item.id,
+      app: {
+        id: app.id,
+        title: app.title,
+        icon: app.icon,
+        size: {
+          width: app.width || DEFAULT_WIDTH,
+          height: app.height || DEFAULT_HEIGHT
+        },
+        mobileSize: app.mobileSize,
+      },
+      position,
+      zIndex: item.zIndex
+    });
+  }
+
+  mapped.sort((a, b) => a.zIndex - b.zIndex);
+  return mapped;
 }
 ```
 
 ## Lessons Learned
 
 ### Vue 3 Composition API Insights
-- Compared to React hooks, I found Vue's refs more straightforward for state management
+- Compared to React hooks, I found Vue's refs more straightforward to use for simple state
 - I appreciated the component-based structure that Vue enforces
 - Single-file components made organizing code easier
+- I still need to get more comfortable with Vue's reactivity system
 
 ### GSAP Thoughts
 - Timeline controls provided precise animation sequencing
@@ -400,6 +384,8 @@ const ensureTopWindow = (windowId: string) => {
 
 ## Final Implementation
 
-The completed portfolio features a clean desktop interface where visitors can open different applications showcasing my work. Each window is draggable with smooth opening/closing animations, creating an engaging browsing experience that demonstrates both my projects and technical skills.
+The completed portfolio features a clean desktop interface where visitors can open different applications showcasing my work. Each window is draggable with smooth opening/closing animations, and the state persists across sessions. 
+
+I hope this deep dive into my development process inspires you to explore building interactive web experiences using Vue 3 and GSAP!
 
 *Live demo: [chenxing-dev.github.io](https://chenxing-dev.github.io) | Source code: [GitHub Repository](https://github.com/chenxing-dev/chenxing-dev.github.io)*
