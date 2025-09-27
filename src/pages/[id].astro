@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Prose from "../components/Prose.astro";
+import Tag from "../components/Tag.astro";
 
 import { getCollection, render } from "astro:content";
 import Back from "../components/Back.astro";
@@ -41,13 +42,7 @@ const { Content } = await render(post);
         }
       </time>
       <div class="flex gap-2 flex-wrap">
-        {
-          post.data.tags.map((tag: string) => (
-            <span class="border-2 border-black bg-white px-2 md:px-3 py-0.5 md:py-1">
-              #{tag}
-            </span>
-          ))
-        }
+        {post.data.tags.map((tag: string) => <Tag tag={tag} />)}
       </div>
     </div>
   </header>

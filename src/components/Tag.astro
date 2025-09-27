@@ -1,0 +1,63 @@
+---
+interface Props {
+    tag: string;
+}
+
+const { tag } = Astro.props as Props;
+
+// Tag color helpers
+const specialTagStyles = new Map<string, string>([
+    ["vue", "bg-[#4FC08D]"],
+    ["javascript", "bg-[#F7DF1E]"],
+    ["css", "bg-[#663399]"],
+    ["html", "bg-[#E34F26]"],
+    ["typescript", "bg-[#3178C6]"],
+    ["react", "bg-[#61DAFB]"],
+    ["svelte", "bg-[#FF3E00]"],
+    ["astro", "bg-[#BC52EE]"],
+    ["gsap", "bg-green-500"],
+    ["linux", "bg-[#FCC624]"],
+    ["bash", "bg-[#4EAA25]"],
+    ["zsh", "bg-[#F15A24]"],
+    ["git", "bg-[#F05032]"],
+    ["github", "bg-[#181717]"],
+    ["web-dev", "bg-cyan"],
+    ["web-development", "bg-cyan"],
+    ["web", "bg-cyan"],
+    ["arch-linux", "bg-[#1793D1]"],
+    ["arch", "bg-[#1793D1]"],
+    ["unix", "bg-[#1793D1]"],
+]);
+
+const palette: string[] = [
+    "bg-primary",
+    "bg-secondary",
+    "bg-cyan",
+    "bg-[#469a8e]", // teal
+    // "bg-[#508e63]", // green
+    // "bg-[#6193b4]", // blue 
+    "bg-[#e56c4d]", // orange
+];
+
+// A simple hash function to get a number from a string. 
+// This ensures that the same tag always gets the same color.
+function hashTag(tag: string): number {
+    let h = 0;
+    for (let i = 0; i < tag.length; i++) {
+        h = (h << 5) - h + tag.charCodeAt(i);
+        h |= 0;
+    }
+    return Math.abs(h);
+}
+
+function getTagClasses(tag: string): string {
+    const key = tag.toLowerCase();
+    return specialTagStyles.get(key) ?? palette[hashTag(key) % palette.length];
+}
+---
+
+<span
+    class={`border-2 border-black px-2 md:px-3 py-0.5 md:py-1 ${getTagClasses(tag)}`}
+>
+    #{tag}
+</span>
