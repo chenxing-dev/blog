@@ -3,17 +3,38 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-  --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-}
-
-@theme {
   /* Neobrutalism palette */
-  --color-primary: #ff6b6b;
+  --color-primary: #e96c48;
   --color-secondary: #ffd166;
   --color-background: #f9f6ee;
   --color-accent: #2e7d32;
   --color-blue-steel: #1976d2;
   --color-cyan: #aeeeee;
+
+  --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  --text-shadow-neo:
+    6px 6px 0px rgba(0, 0, 0, 1),
+    3px 3px 0px rgba(0, 0, 0, 1),
+    -3px 3px 0px rgba(0, 0, 0, 1),
+    3px -3px 0px rgba(0, 0, 0, 1),
+    -3px -3px 0px rgba(0, 0, 0, 1);
+
+  --animate-wobble: wobble 2.4s ease-in-out infinite;
+  @keyframes wobble {
+    0%,
+    100% {
+      transform: rotate(-1.5deg) translateY(0) scale(1);
+    }
+    25% {
+      transform: rotate(1deg) translateY(-2px) scale(1.02);
+    }
+    50% {
+      transform: rotate(-0.5deg) translateY(1px) scale(0.995);
+    }
+    75% {
+      transform: rotate(1.5deg) translateY(-1px) scale(1.01);
+    }
+  }
 }
 
 body {

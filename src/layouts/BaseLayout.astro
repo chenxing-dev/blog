@@ -1,6 +1,4 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 // Frontmatter
@@ -21,7 +19,9 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-background text-neutral-900 p-4 min-h-screen">
-    <main class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo">
+    <main
+      class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo"
+    >
       <slot />
     </main>
   </body>

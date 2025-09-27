@@ -1,14 +1,22 @@
 ---
-import Back from "../components/Back.astro";
 import BaseLayout from "../layouts/Layout.astro";
 ---
 
 <BaseLayout title="Why Arch Linux?">
-  <main class="container mx-auto px-6 py-8 max-w-4xl">
-    <article class="flex items-center justify-center" style="min-height: 85vh">
-      <p class="text-3xl font-bold">I USE ARCH, BTW</p>
+  <main class="relative min-h-[60vh] md:min-h-[70vh] flex justify-center">
+    <!-- fun background stripes -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-10"
+      style="background: repeating-linear-gradient(45deg, #000 0 10px, transparent 10px 20px);"
+    >
+    </div>
+    <article class="flex items-center justify-center p-4 md:p-8">
+      <p
+        class="px-4 text-center font-black tracking-wider text-6xl lg:text-7xl xl:text-8xl text-blue-steel
+      text-shadow-neo will-change-transform animate-wobble origin-bottom-left"
+      >
+        I USE ARCH, BTW
+      </p>
     </article>
-
-    <Back />
   </main>
 </BaseLayout>

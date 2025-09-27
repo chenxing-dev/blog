@@ -1,6 +1,5 @@
 ---
-import BaseLayout from "../layouts/Layout.astro";
-import Calendar from "../components/icons/Calendar.astro";
+import Layout from "../layouts/Layout.astro";
 import Prose from "../components/Prose.astro";
 
 import { getCollection, render } from "astro:content";
@@ -22,43 +21,40 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={post.data.title + " | 陈刑's Tech Guides"}>
-  <article class="mx-auto px-2 max-w-4xl">
-    <header class="mb-6 md:mb-8">
-      <h1
-        class="text-2xl md:text-4xl tracking-tight md:tracking-normal font-bold mb-2 md:mb-4 pb-2"
-      >
-        {post.data.title}
-      </h1>
-      <div class="flex flex-col gap-3 text-sm">
-        <time
-          class="flex items-center gap-2 p-2 bg-gray-100 border-2 border-black"
-        >
-          <Calendar />
-          {
-            post.data.date.toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })
-          }
-        </time>
-        <div class="flex gap-2 flex-wrap">
-          {
-            post.data.tags.map((tag: string) => (
-              <span class="border-2 border-black bg-white px-3 py-1 shadow-neo">
-                #{tag}
-              </span>
-            ))
-          }
-        </div>
+<Layout title={post.data.title + " | 陈刑's Tech Guides"} padding={false}>
+  <header class="mb-6 md:mb-8">
+    <h1
+      class="text-2xl md:text-4xl tracking-tight md:tracking-normal font-black bg-primary
+      px-4 md:px-6 py-2 border-b-2"
+    >
+      {post.data.title}
+    </h1>
+    <div class="p-4 pt-2 border-b-2">
+      <time class="mb-1 block">
+        Published on
+        {
+          post.data.date.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })
+        }
+      </time>
+      <div class="flex gap-2 flex-wrap">
+        {
+          post.data.tags.map((tag: string) => (
+            <span class="border-2 border-black bg-white px-2 md:px-3 py-0.5 md:py-1">
+              #{tag}
+            </span>
+          ))
+        }
       </div>
-    </header>
+    </div>
+  </header>
 
-    <Prose>
-      <Content />
-    </Prose>
+  <Prose>
+    <Content />
+  </Prose>
 
-    <Back />
-  </article>
-</BaseLayout>
+  <Back />
+</Layout>
