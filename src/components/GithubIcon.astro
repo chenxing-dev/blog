@@ -1,15 +1,13 @@
 ---
 interface Props {
   repoUrl: string;
-  className?: string;
 }
-const { repoUrl, className } = Astro.props;
+const { repoUrl } = Astro.props;
 ---
 
 <a
   href={repoUrl}
-  class="block border-3 border-black bg-white p-2 shadow-neo hover:shadow-none transition-all hover:translate-y-0.5 group
-  {className}"
+  class="block border-3 border-black bg-white p-2 shadow-neo hover:shadow-none transition-all hover:translate-y-0.5 group"
   aria-label="GitHub Repository"
 >
   <svg
