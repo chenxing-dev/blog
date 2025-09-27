@@ -1,12 +1,13 @@
 ---
 // src/pages/404.astro
 import BaseLayout from "../layouts/Layout.astro";
+import Back from "../components/Back.astro";
 ---
 
 <BaseLayout title="Page Not Found | 陈刑's Blog">
-  <div class="px-6 py-16 text-center">
-    <h1 class="text-9xl font-black mb-4">404</h1>
+  <div class="px-6 py-16 flex flex-col items-center">
+    <h1 class="text-8xl mb-4 underline">404</h1>
     <p class="text-2xl mb-4">Page not found.</p>
-    <a href="/"><p class="underline">&larr; Return to Homepage</p> </a>
+    <Back />
   </div>
 </BaseLayout>

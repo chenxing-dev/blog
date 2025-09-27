@@ -9,22 +9,17 @@ const posts = rawBlogPosts.map(processPost).sort(byDateDesc);
 ---
 
 <BaseLayout title="Linux Guides">
-    <div class="p-6">
-        <div
-            class="border-3 border-black p-6 mb-4 md:mb-8 bg-secondary shadow-neo"
-        >
-            <h2 class="text-3xl md:text-5xl font-black uppercase mb-2">
-                ARCH LINUX & UNIX TOOLKIT
-            </h2>
-            <p class="text-base md:text-xl">
-                Practical guides and step-by-step tutorials for developers and
-                enthusiasts.
-            </p>
-            <p class="text-base md:text-xl">
-                System configuration, terminal workflows, and hardware
-                solutions.
-            </p>
-        </div>
-        <PostGrid posts={posts} accentColor="#FFD166" borderColor="#000" />
+    <div class="border-3 border-black p-6 mb-4 md:mb-8 bg-secondary shadow-neo">
+        <h2 class="text-3xl md:text-5xl font-black uppercase mb-2">
+            ARCH LINUX & UNIX TOOLKIT
+        </h2>
+        <p class="text-base md:text-xl">
+            Practical guides and step-by-step tutorials for developers and
+            enthusiasts.
+        </p>
+        <p class="text-base md:text-xl">
+            System configuration, terminal workflows, and hardware solutions.
+        </p>
     </div>
+    <PostGrid posts={posts} accentColor="#FFD166" borderColor="#000" />
 </BaseLayout>

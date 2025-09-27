@@ -3,46 +3,39 @@ import BaseLayout from "../layouts/Layout.astro";
 ---
 
 <BaseLayout title="陈刑's Tech Guides">
-  <div class="p-4 md:p-6">
-    <div
-      class="text-white p-2 md:p-4 mb-4 md:mb-6 text-center text-xl md:text-2xl font-bold shadow-neo
+  <div
+    class="text-white p-2 md:p-4 mb-4 md:mb-6 text-center text-xl md:text-2xl font-bold shadow-neo
       bg-blue-steel border-3 border-black"
+  >
+    LINUX CONFIGURATION AND WEB DEVELOPMENT NOTES
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    <a
+      class="border-3 border-black px-6 py-4 md:py-6 bg-secondary block
+        shadow-neo hover:shadow-none hover:translate-y-0.5 transition-all"
+      href="/linux-guides"
     >
-      LINUX CONFIGURATION AND WEB DEVELOPMENT NOTES
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-      <a
-        class="border-3 border-black px-6 py-4 md:py-6 bg-secondary block
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-black uppercase mb-2">
+        ARCH LINUX CONFIGURATION & CUSTOMIZATION
+      </h2>
+      <p class="text-sm md:text-xl">
+        Step-by-step guides to configure and customize Arch Linux. Learn to
+        customize your desktop environment and enhance your productivity.
+      </p>
+    </a>
+    <a
+      class="border-3 border-black px-6 py-4 md:py-6 bg-cyan block
         shadow-neo hover:shadow-none hover:translate-y-0.5 transition-all"
-        href="/linux-guides"
-      >
-        <h2 class="text-2xl md:text-4xl lg:text-5xl font-black uppercase mb-2">
-          ARCH LINUX CONFIGURATION & CUSTOMIZATION
-        </h2>
-        <p class="text-sm md:text-xl">
-          Step-by-step guides to configure and customize Arch Linux. Learn to customize your desktop environment
-          and enhance your productivity.
-        </p>
-        <p class="text-sm md:text-xl mt-2">
-          <i>System configuration, terminal workflows, and useful tips for Linux users.</i>
-        </p>
-      </a>
-      <a
-        class="border-3 border-black px-6 py-4 md:py-6 bg-cyan block
-        shadow-neo hover:shadow-none hover:translate-y-0.5 transition-all"
-        href="/web-dev"
-      >
-        <h2 class="text-2xl md:text-4xl lg:text-5xl  font-black uppercase mb-2">
-          WEB DEVELOPMENT & MY PERSONAL PROJECTS
-        </h2>
-        <p class="text-sm md:text-xl">
-          Documenting my journey in web development—from learning new technologies to building projects.
-          <i>Code snippets, project post-mortems, and lessons learned.</i>
-        </p>
-        <p class="text-sm md:text-xl mt-2">
-          Hopefully useful for fellow developers!
-        </p>
-      </a>
-    </div>
+      href="/web-dev"
+    >
+      <h2 class="text-2xl md:text-4xl lg:text-5xl font-black uppercase mb-2">
+        WEB DEVELOPMENT & MY PERSONAL PROJECTS
+      </h2>
+      <p class="text-sm md:text-xl">
+        Documenting my journey in web development—from learning new technologies
+        to building projects.
+        <i>Code snippets, project post-mortems, and lessons learned.</i>
+      </p>
+    </a>
   </div>
 </BaseLayout>
