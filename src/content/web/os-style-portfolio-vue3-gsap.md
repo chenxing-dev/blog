@@ -308,7 +308,7 @@ Considering mobile responsiveness, I disabled dragging on smaller screens to ens
 
 ### Persisted state pitfalls
 
-Using `useStorage` from `@vueuse/core` to persist open windows was convenient, but I had to clean up invalid states when apps were removed from the registry. I sanitized the stored windows on load:
+Using `useStorage` from `@vueuse/core` to persist open windows was convenient, but I had to clean up invalid states when the stored data is outdated (e.g., when the architecture changed or apps were removed from the registry). I sanitized the stored windows on load:
 
 ```typescript
 // useDesktop.ts
@@ -322,6 +322,15 @@ const windows = useStorage<WindowItem[]>("os-windows", []);
 // Convert persisted window to full window object
 export const sanitizeAndRehydrate = (stored: StoredWindow[] | unknown): WindowItem[] => {
   const list = Array.isArray(stored) ? stored : [];
+  // Validate app exists
+  if (!item.app || !item.app.id) {
+    return null; // Outdated or invalid entry
+  }
+
+  const app = getAppById(item.app.id);
+  if (!app) {
+    return null; // App not found
+  }
 
   return list.map(item => {
     const app = getAppById(item.app.id);
