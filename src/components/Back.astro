@@ -6,10 +6,7 @@ type Props = {
 const { class: className = "", ...attrs } = Astro.props as Props;
 ---
 
-<div
-  class={`mt-6 md:mt-8 text-center flex py-4 md:py-6 ${className}`}
-  {...attrs}
->
+<div class={`mx-1 my-6 ${className}`} {...attrs}>
   <a
     href="/"
     class="border-3 border-black px-4 py-2 bg-secondary inline-block
