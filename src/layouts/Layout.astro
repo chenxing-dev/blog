@@ -6,9 +6,9 @@ import "../styles/global.css";
 // Frontmatter
 interface Props {
   title: string;
-  padding?: boolean;
+  class?: string;
 }
-const { title, padding } = Astro.props;
+const { title, class: className = "", ...attrs } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +26,7 @@ const { title, padding } = Astro.props;
       class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo"
     >
       <Header />
-      <div class={padding ? "p-6 md:p-8" : null}>
+      <div class={className} {...attrs}>
         <slot />
       </div>
       <Footer />
