@@ -5,16 +5,16 @@
 <div
   class="px-4 md:px-6
   prose prose-base md:prose-lg max-w-none
-  prose-headings:text-gray-800
+  prose-headings:text-gray-800 prose-headings:m-0
   prose-h1:text-3xl prose-h1:border-b-3 prose-h1:border-black prose-h1:pb-3 prose-h1:mb-6
-  prose-h2:bg-[#f0f0f0] prose-h2:text-2xl prose-h2:border-b-3 prose-h2:border-black prose-h2:px-4 prose-h2:py-2 prose-h2:mt-10 prose-h2:mb-4
+  prose-h2:text-2xl prose-h2:nth-of-type-[3n+1]:text-red prose-h2:nth-of-type-[3n+2]:text-primary prose-h2:nth-of-type-[3n]:text-teal
   prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-h3:py-1
   prose-h4:text-lg prose-h4:mt-4 prose-h4:mb-2
   prose-p:text-justify prose-p:mt-3 prose-p:mb-0
   prose-a:text-blue-700 prose-a:font-bold prose-a:no-underline prose-a:border-b-2 prose-a:border-blue-700 prose-a:transition-all
   prose-a:hover:bg-blue-700 prose-a:hover:text-white
   prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:bg-gray-100 prose-blockquote:shadow-neo
-  prose-ul:list-none prose-ul:pl-0
+  prose-ul:pl-4 prose-ul:my-0 prose-ul:list-disc prose-li:marker:text-black
   prose-ol:my-0
   prose-img:border-3 prose-img:border-black prose-img:shadow-neo prose-img:my-6
   prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:border-3 prose-pre:border-black prose-pre:shadow-neo prose-pre:rounded-none prose-pre:overflow-x-auto prose-pre:mt-2
@@ -27,5 +27,3 @@
 >
   <slot />
 </div>
-
-<!-- `prose-code:text-gray-900 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1` should not be applied to `prose-code` inside `prose-pre` -->

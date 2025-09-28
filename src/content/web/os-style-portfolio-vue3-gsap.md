@@ -6,10 +6,10 @@ category: web-development
 date: 2025-09-27
 ---
 
-TL;DR
+## TL;DR
 - I built an OS-style portfolio with Vue 3 + GSAP and draggable windows.
-- **Key ideas**: composables for state, GSAP timelines for open/close, and persisted windows via VueUse.
-- Live demo: [chenxing-dev.github.io](https://chenxing-dev.github.io)
+- Key ideas: composables for state, GSAP timelines for open/close, and persisted windows via VueUse.
+- Live demo [here](https://chenxing-dev.github.io) | Source [here](https://github.com/chenxing-dev/chenxing-dev.github.io)
 
 Stack and versions (at time of writing)
 ```- Node: 24.x
