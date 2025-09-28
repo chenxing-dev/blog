@@ -1,7 +1,7 @@
 ---
 title: Building my OS-style portfolio site with Vue 3 and GSAP
 description: A technical deep dive into creating an operating system-inspired portfolio website using Vue 3 composition API and GSAP animations
-tags: [vue, gsap, portfolio, web-development, frontend, vue-draggable-resizable]
+tags: [vue, gsap, web development, frontend, portfolio]
 category: web-development
 date: 2025-09-27
 ---

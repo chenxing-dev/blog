@@ -20,39 +20,17 @@ const specialTagStyles = new Map<string, string>([
     ["bash", "bg-[#4EAA25]"],
     ["zsh", "bg-[#F15A24]"],
     ["git", "bg-[#F05032]"],
-    ["github", "bg-[#181717]"],
-    ["web-dev", "bg-cyan"],
-    ["web-development", "bg-cyan"],
+    ["github", "bg-[#181717] text-white"],
+    ["web development", "bg-cyan"],
     ["web", "bg-cyan"],
-    ["arch-linux", "bg-[#1793D1]"],
+    ["arch linux", "bg-[#1793D1]"],
     ["arch", "bg-[#1793D1]"],
-    ["unix", "bg-[#1793D1]"],
+    ["raspberry pi", "bg-[#6CC04A]"]
 ]);
-
-const palette: string[] = [
-    "bg-primary",
-    "bg-secondary",
-    "bg-cyan",
-    "bg-[#469a8e]", // teal
-    // "bg-[#508e63]", // green
-    // "bg-[#6193b4]", // blue 
-    "bg-[#e56c4d]", // orange
-];
-
-// A simple hash function to get a number from a string. 
-// This ensures that the same tag always gets the same color.
-function hashTag(tag: string): number {
-    let h = 0;
-    for (let i = 0; i < tag.length; i++) {
-        h = (h << 5) - h + tag.charCodeAt(i);
-        h |= 0;
-    }
-    return Math.abs(h);
-}
 
 function getTagClasses(tag: string): string {
     const key = tag.toLowerCase();
-    return specialTagStyles.get(key) ?? palette[hashTag(key) % palette.length];
+    return specialTagStyles.get(key) ?? "";
 }
 ---
 

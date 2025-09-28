@@ -8,7 +8,7 @@ const rawWebDevPosts = await getCollection("web");
 const posts = rawWebDevPosts.map(processPost).sort(byDateDesc);
 ---
 
-<BaseLayout title="Web Dev Guides" class="px-4 md:px-6">
+<BaseLayout title="Web Dev Guides" class="p-4 md:p-6">
     <div class="border-3 border-black p-6 mb-4 md:mb-8 bg-cyan shadow-neo">
         <h2 class="text-2xl md:text-4xl font-black uppercase mb-2">
             WEB DEV & PROJECTS
