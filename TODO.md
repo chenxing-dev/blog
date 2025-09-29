@@ -1,13 +1,16 @@
-- [x] Implement the landing page.
-- [ ] Add a search functionality
-  - [ ] Filter blog posts by title or tags.
+- [ ] Add visual focus and graphic elements to `index.astro`
+  - [ ] https://www.siteinspire.com for design inspiration.
+  - [ ] Featured Spotlight Section
+    - [ ] Arch logo/icon + compelling screenshot
+    - [ ] Hover effect with title and brief description.
+  - [ ] Recent Articles Section
+    - [ ] Filter articles by tags (e.g., web development, Linux).  
 - [ ] Writings on web development topics in `src/content/web/`.
   - [ ] Building my OS-style portfolio site with Vue 3 and GSAP.
   - [ ] Comparing React, Vue, and Svelte for a small project.
   - [ ] Vue 3 + Three.js: Creating a 3D interactive website.
   - [ ] Why I choose a neobrutalism design for my blog.
 - [ ] Writings on Linux topics in `src/content/linux/`.
-  - [ ] 
   - [ ] Setting up a Raspberry Pi 4B as a backend server.
   - [ ] What I learned from switching to Linux full-time for a year.
     - [ ] Around April 2025, I switched to Arch Linux with Qtile as my daily driver. 
