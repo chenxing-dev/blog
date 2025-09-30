@@ -2,15 +2,15 @@
 import BaseLayout from "../layouts/Layout.astro";
 import SpotlightCarousel from "../components/SpotlightCarousel.astro";
 import { getCollection } from "astro:content";
-import { processPost, byDateDesc, type Post } from "../lib/postUtils";
+import { processPost, byDateDesc } from "../lib/postUtils";
 
 const linuxPosts = (await getCollection("linux")).map(processPost);
 const webDevPosts = (await getCollection("web")).map(processPost);
 const allPosts = [...linuxPosts, ...webDevPosts].sort(byDateDesc);
 
-// Featured posts logic: either those marked as featured or the latest 5 posts
+// Featured posts logic: either those marked as featured or the latest 2 posts
 let featuredPosts = allPosts.filter((post) => post.data.featured);
-if (featuredPosts.length === 0) featuredPosts = allPosts.slice(0, 5);
+if (featuredPosts.length === 0) featuredPosts = allPosts.slice(0, 2);
 ---
 
 <BaseLayout title="陈刑's Tech Guides" class="p-4 md:p-6">

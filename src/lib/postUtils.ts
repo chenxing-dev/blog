@@ -56,14 +56,19 @@ export function calculateReadTime(content: string) {
     return Math.max(minutes, 1);
 }
 
-// Get the corner and badge styles based on category
+// Get the style based on category
 export const getStyle = (category: string) => {
-    switch (category.toLowerCase()) {
-        case "linux":
-            return ["var(--color-secondary)"];
-        case "web":
-            return ["var(--color-primary)"];
-        default:
-            return [null];
+    switch (category) {
+        case "terminal": return ["bg-purple-500", "border-purple-700"];
+        case "desktop": return ["bg-secondary"];
+        case "config": return ["bg-gray-500", "border-gray-700"];
+        case "hardware": return ["bg-yellow-500", "border-yellow-700"];
+        case "programming": return ["bg-green-500", "border-green-700"];
+        case "web-dev": return ["bg-cyan", "border-cyan-700"];
+        case "web-development": return ["bg-cyan", "border-cyan-700"];
+        case "network": return ["bg-teal-500", "border-teal-700"];
+        case "security": return ["bg-purple-500", "border-purple-700"];
+        case "package-management": return ["bg-orange-500", "border-orange-700"];
+        default: return ["bg-gray-500", "border-gray-700"];
     }
 };

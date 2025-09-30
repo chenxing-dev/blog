@@ -5,6 +5,7 @@ tags: [vue, gsap, web development, frontend, portfolio]
 category: web-development
 date: 2025-09-27
 featured: true
+coverImage: /images/os-portfolio.png
 ---
 
 ## TL;DR

@@ -12,7 +12,10 @@ const schema = z.object({
   category: z.string(),
   tags: z.array(z.string()),
   featured: z.optional(z.boolean()),
-  coverImage: z.optional(z.string().url()),
+  coverImage: z.optional(z.union([
+    z.string().url(),
+    z.string().startsWith('/'), // root-relative asset in /public
+  ])),
 })
 const linuxCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/linux" }),

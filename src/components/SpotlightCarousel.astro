@@ -16,12 +16,31 @@ const slides = [
         post,
     })),
 ];
+
+// Generate CSS that highlights the matching dot based on :target and (optionally) :in-view
+const dotCSS = `
+${slides
+    .map(
+        (_, i) =>
+            `section[data-carousel]:has(#slide-${i}:target) [data-dot="${i}"] { background-color: black; }`,
+    )
+    .join("\n")}
+/* Fallback when there is no hash */
+section[data-carousel]:not(:has([id]:target)) [data-dot="0"] { background-color: black; }
+/* When no hash, use the slide in view */
+${slides
+    .map(
+        (_, i) =>
+            `section[data-carousel]:not(:has([id]:target)):has([data-slide-index="${i}"]:in-view) [data-dot="${i}"] { background-color: black; }`,
+    )
+    .join("\n")}
+`;
 ---
 
-<section class="my-4">
+<section class="my-4" data-carousel>
     <div class="relative">
         <div
-            class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4"
             style="scrollbar-width: none; -ms-overflow-style: none;"
         >
             {
@@ -44,11 +63,15 @@ const slides = [
                 slides.map((_, i) => (
                     <a
                         href={`#slide-${i}`}
-                        class="w-3 h-3 md:w-4 md:h-4 rounded-full border-3 border-black inline-block"
+                        data-dot={i}
+                        class="w-3 h-3 rounded-full border-3 border-black inline-block"
                         aria-label={`Go to slide ${i + 1}`}
                     />
                 ))
             }
         </div>
     </div>
+
+    {/* Generated, slide-count-aware CSS */}
+    <style is:global set:html={dotCSS}></style>
 </section>

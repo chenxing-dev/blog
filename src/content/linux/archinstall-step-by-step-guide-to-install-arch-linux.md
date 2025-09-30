@@ -1,13 +1,12 @@
 ---
 title: "Step-by-Step Guide to Install Arch Linux with archinstall"
-category: "package-management"
+category: "desktop"
 tags: ["linux", "arch linux", "archinstall", "qtile", "dotfiles"]
 date: 2025-05-12
 featured: true
-coverImage: "https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png"
+description: "A comprehensive guide to installing Arch Linux using the archinstall script, including post-installation steps and Qtile configuration."
+coverImage: /images/archlinux-installation.png
 ---
-
-![Arch Linux Logo](https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png)
 *The `archinstall` script simplifies Arch Linux setup without sacrificing its core philosophy. Here's how to use it.*
 
 ## **Prerequisites**

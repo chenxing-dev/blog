@@ -7,6 +7,7 @@ const { index } = Astro.props as Props;
 
 <article
     id={`slide-${index}`}
+    data-slide-index={index}
     class="snap-center shrink-0
                                 w-full md:w-2/3 lg:w-1/2 px-4 md:px-6 py-6
                                 relative"
@@ -19,14 +20,14 @@ const { index } = Astro.props as Props;
     </p>
     <div class="flex flex-wrap gap-2">
         <a
-            href="/linux"
+            href="/linux-guides"
             class="border-3 border-black bg-secondary text-black px-4 py-2
                                         font-bold shadow-neo hover:shadow-none hover:translate-y-0.5 transition-all"
         >
             Browse Linux Posts
         </a>
         <a
-            href="/web"
+            href="/web-dev"
             class="border-3 border-black bg-cyan text-black px-4 py-2
                                         font-bold shadow-neo hover:shadow-none hover:translate-y-0.5 transition-all"
         >

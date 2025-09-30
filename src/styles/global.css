@@ -4,15 +4,24 @@
 
 @theme {
   /* Neobrutalism palette */
-  --color-primary: #ee8a6b; /* Coral */
-  --color-secondary: #ffd166; /* Mustard */
-  --color-background: #f9f6ee; /* Off-white */
-  --color-accent: #2e7d32; /* Forest Green */
-  --color-blue: #1976d2; /* Blue */
-  --color-cyan: #aeeeee; /* Light Cyan */
-   --color-teal: #4ea9a9; /* Teal */
-   --color-yellow: #f4cc65; /* Yellow */
-  --color-red: #d14b3a; /* Red */
+  --color-primary: #ee8a6b;
+  /* Coral */
+  --color-secondary: #ffd166;
+  /* Mustard */
+  --color-background: #f9f6ee;
+  /* Off-white */
+  --color-accent: #2e7d32;
+  /* Forest Green */
+  --color-blue: #1976d2;
+  /* Blue */
+  --color-cyan: #aeeeee;
+  /* Light Cyan */
+  --color-teal: #4ea9a9;
+  /* Teal */
+  --color-yellow: #f4cc65;
+  /* Yellow */
+  --color-red: #d14b3a;
+  /* Red */
 
   --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --text-shadow-neo:
@@ -23,17 +32,22 @@
     -3px -3px 0px rgba(0, 0, 0, 1);
 
   --animate-wobble: wobble 2.4s ease-in-out infinite;
+
   @keyframes wobble {
+
     0%,
     100% {
       transform: rotate(-1.5deg) translateY(0) scale(1);
     }
+
     25% {
       transform: rotate(1deg) translateY(-2px) scale(1.02);
     }
+
     50% {
       transform: rotate(-0.5deg) translateY(1px) scale(0.995);
     }
+
     75% {
       transform: rotate(1.5deg) translateY(-1px) scale(1.01);
     }
@@ -55,4 +69,14 @@ p {
 
 .prose code:not(pre code) {
   @apply bg-background px-2 py-1
+}
+
+/* Show a compact language pill when pre has a non-plaintext language */
+.prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i]) {
+  @apply relative;
+}
+
+.prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i])::before {
+  content: attr(data-language);
+  @apply text-xs font-mono font-black uppercase text-white bg-black absolute top-0 right-0 -translate-x-1 translate-y-1 px-1 py-0.5;
 }
