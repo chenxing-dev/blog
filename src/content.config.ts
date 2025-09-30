@@ -11,6 +11,8 @@ const schema = z.object({
   date: z.date(),
   category: z.string(),
   tags: z.array(z.string()),
+  featured: z.optional(z.boolean()),
+  coverImage: z.optional(z.string().url()),
 })
 const linuxCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/linux" }),

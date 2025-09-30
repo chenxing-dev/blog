@@ -2,6 +2,7 @@ import type { InferEntrySchema } from "astro:content";
 
 export type Post = {
     id: string;
+    url: string;
     body: string;
     data: InferEntrySchema<"linux"> & { readTime: number };
 };
@@ -14,6 +15,7 @@ export function processPost(post: any) {
     const readTime = calculateReadTime(post.body ?? "");
     return {
         ...post,
+        url: `/${post.id}`,
         data: {
             ...post.data,
             readTime,
@@ -53,3 +55,15 @@ export function calculateReadTime(content: string) {
     // Minimum 1 minute
     return Math.max(minutes, 1);
 }
+
+// Get the corner and badge styles based on category
+export const getStyle = (category: string) => {
+    switch (category.toLowerCase()) {
+        case "linux":
+            return ["var(--color-secondary)"];
+        case "web":
+            return ["var(--color-primary)"];
+        default:
+            return [null];
+    }
+};

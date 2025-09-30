@@ -3,6 +3,7 @@ title: "NordVPN Setup on Arch Linux: Bypass Restrictions with StrongSwan/IPsec"
 category: "security"
 tags: ["linux", "arch linux", "nordvpn", "strongswan", "ipsec", "vpn"]
 date: 2025-05-10
+description: "A step-by-step guide to setting up NordVPN on Arch Linux using StrongSwan and IPsec for obfuscated connections. If you're in a region with VPN restrictions, this guide will help you bypass them effectively."
 ---
 
 

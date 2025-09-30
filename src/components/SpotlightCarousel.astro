@@ -1,0 +1,54 @@
+---
+import type { Post } from "../lib/postUtils";
+import Hero from "./Hero.astro";
+import FeaturedPost from "./FeaturedPost.astro";
+
+export interface Props {
+    posts: Post[];
+}
+const { posts } = Astro.props as Props;
+
+// Slides: first is static hero, then featured posts
+const slides = [
+    { type: "hero" as const },
+    ...posts.map((post) => ({
+        type: "post" as const,
+        post,
+    })),
+];
+---
+
+<section class="my-4">
+    <div class="relative">
+        <div
+            class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory"
+            style="scrollbar-width: none; -ms-overflow-style: none;"
+        >
+            {
+                slides.map((slide, index) => {
+                    {
+                        if (slide.type === "hero") {
+                            return <Hero index={index} />;
+                        } else if (slide.type === "post") {
+                            return (
+                                <FeaturedPost index={index} post={slide.post} />
+                            );
+                        }
+                    }
+                })
+            }
+        </div>
+        {/* Dots (anchor based) */}
+        <div class="flex gap-2 mt-6 justify-center">
+            {
+                slides.map((_, i) => (
+                    <a
+                        href={`#slide-${i}`}
+                        class="w-3 h-3 md:w-4 md:h-4 rounded-full border-3 border-black inline-block"
+                        aria-label={`Go to slide ${i + 1}`}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>

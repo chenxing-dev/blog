@@ -4,6 +4,7 @@ description: A technical deep dive into creating an operating system-inspired po
 tags: [vue, gsap, web development, frontend, portfolio]
 category: web-development
 date: 2025-09-27
+featured: true
 ---
 
 ## TL;DR

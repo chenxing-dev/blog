@@ -3,6 +3,8 @@ title: "Step-by-Step Guide to Install Arch Linux with archinstall"
 category: "package-management"
 tags: ["linux", "arch linux", "archinstall", "qtile", "dotfiles"]
 date: 2025-05-12
+featured: true
+coverImage: "https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png"
 ---
 
 ![Arch Linux Logo](https://archlinux.org/static/logos/archlinux-logo-dark-90dpi.ebdee92a15b3.png)
