@@ -6,6 +6,7 @@ category: web-development
 date: 2025-09-27
 featured: true
 coverImage: /images/os-portfolio.png
+coverImageCaption: Screenshot of my OS-style portfolio site with draggable windows
 ---
 
 ## TL;DR
