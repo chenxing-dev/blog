@@ -26,6 +26,8 @@
   /* Green */
   --color-light-blue: #629ec6;
   /* Light Blue */
+  --color-orange: #c98c43;
+  /* Orange */
 
   --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --text-shadow-neo:
@@ -77,12 +79,12 @@ p {
 
 /* Show a compact language pill when pre has a non-plaintext language */
 .prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i]) {
-  @apply relative;
+  @apply relative pt-10;
 }
 
 .prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i])::before {
-  content: attr(data-language);
-  @apply text-xs font-mono font-black uppercase text-white bg-black absolute top-0 right-0 -translate-x-1 translate-y-1 px-1 py-0.5;
+  content: '<<<' attr(data-language);
+  @apply absolute top-0 left-0 w-full px-6 py-1.5 bg-secondary text-sm font-bold border-b-3;
 }
 
 @layer utilities {

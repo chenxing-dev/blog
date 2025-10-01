@@ -15,7 +15,7 @@ const [color] = getStyle(post.data.category);
     id={`slide-${index}`}
     data-slide-index={index}
     class="relative group snap-center shrink-0
-    w-full md:w-2/3 lg:w-1/2
+    w-full md:w-2/3 lg:w-1/2 aspect-16/9 overflow-hidden
     border-3"
     href={post.url}
 >
@@ -25,7 +25,8 @@ const [color] = getStyle(post.data.category);
             <img
                 src={post.data.coverImage}
                 alt={post.data.title}
-                class="absolute top-0 left-0 h-full w-full"
+                class="absolute inset-0 
+                h-full w-full object-cover object-center bg-black"
             />
         )
     }

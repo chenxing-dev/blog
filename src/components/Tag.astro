@@ -8,10 +8,12 @@ const { tag } = Astro.props as Props;
 // Tag color helpers
 const specialTagStyles = new Map<string, string>([
     ["vue", "bg-[#4FC08D]"],
+    ["vue 3", "bg-[#4FC08D]"],
     ["javascript", "bg-[#F7DF1E]"],
     ["css", "bg-[#663399]"],
     ["html", "bg-[#E34F26]"],
-    ["typescript", "bg-[#3178C6]"],
+    ["typescript", "bg-[#3178C6] text-white"],
+    ["tailwind css", "bg-[#06B6D4]"],
     ["react", "bg-[#61DAFB]"],
     ["svelte", "bg-[#FF3E00]"],
     ["astro", "bg-[#BC52EE]"],
@@ -23,6 +25,7 @@ const specialTagStyles = new Map<string, string>([
     ["github", "bg-[#181717] text-white"],
     ["web development", "bg-cyan"],
     ["web", "bg-cyan"],
+    ["portfolio", "bg-primary"],
     ["arch linux", "bg-[#1793D1]"],
     ["arch", "bg-[#1793D1]"],
     ["raspberry pi", "bg-[#6CC04A]"],
