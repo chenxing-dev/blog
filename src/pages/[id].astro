@@ -50,19 +50,23 @@ const { Content } = await render(post);
 
   {/* Cover Image */}
   {
-    post.data.coverImage && (
-      <img
-        src={post.data.coverImage}
-        alt={post.data.title}
-        class="mx-auto border-3 border-black shadow-neo max-h-128 object-contain mt-6"
-      />
-    )
-  }
-  {
-    post.data.coverImageCaption && (
-      <p class="text-center italic mt-3">
-        {post.data.coverImageCaption}
-      </p>
+    (post.data.coverImage || post.data.coverImageCaption) && (
+      <figure class="px-4 md:px-6 mt-6">
+        {post.data.coverImage && (
+          <img
+            src={post.data.coverImage}
+            alt={post.data.title}
+            class="mx-auto h-auto max-h-128 object-contain border-3 border-black shadow-neo"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+        {post.data.coverImageCaption && (
+          <figcaption class="text-center italic mt-3">
+            {post.data.coverImageCaption}
+          </figcaption>
+        )}
+      </figure>
     )
   }
 
