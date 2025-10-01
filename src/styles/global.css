@@ -22,6 +22,10 @@
   /* Yellow */
   --color-red: #d14b3a;
   /* Red */
+  --color-green: #79b495;
+  /* Green */
+  --color-light-blue: #629ec6;
+  /* Light Blue */
 
   --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --text-shadow-neo:
@@ -79,4 +83,21 @@ p {
 .prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i])::before {
   content: attr(data-language);
   @apply text-xs font-mono font-black uppercase text-white bg-black absolute top-0 right-0 -translate-x-1 translate-y-1 px-1 py-0.5;
+}
+
+@layer utilities {
+  .prose blockquote {
+    quotes: none;
+  }
+
+  .prose blockquote::before {
+    content: '';
+    position: absolute;
+    top: theme(spacing.2);
+    left: theme(spacing.2);
+    width: theme(spacing.1);
+    height: calc(100% - theme(spacing.4));
+    background-color: black;
+  }
+
 }
