@@ -23,7 +23,8 @@ const { title, class: className = "", ...attrs } = Astro.props;
   </head>
   <body class="bg-background text-neutral-900 p-2 md:p-4 min-h-screen">
     <main
-      class="border-3 border-slate-950 max-w-6xl mx-auto bg-white shadow-neo"
+      class="border-3 border-slate-950 bg-white shadow-neo
+       mx-auto max-w-6xl lg:max-w-[1200px]"
     >
       <Header />
       <div class={className} {...attrs}>

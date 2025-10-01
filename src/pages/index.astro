@@ -13,7 +13,7 @@ let featuredPosts = allPosts.filter((post) => post.data.featured);
 if (featuredPosts.length === 0) featuredPosts = allPosts.slice(0, 2);
 ---
 
-<BaseLayout title="陈刑's Tech Guides" class="p-4 md:p-6">
+<BaseLayout title="陈刑's Tech Guides" class="px-4 md:px-6">
   {/* Featured Posts (Carousel) */}
   <SpotlightCarousel posts={featuredPosts} />
 

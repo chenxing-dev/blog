@@ -96,8 +96,91 @@ p {
 
   .prose pre[data-language]:not([data-language="plaintext" i]):not([data-language="text" i]):not([data-language="plain" i]):not([data-language="none" i])::before {
     content: '<<<' attr(data-language);
-    @apply absolute top-0 left-0 w-full px-4 py-1.5 bg-secondary text-sm font-bold border-b-3;
+    @apply absolute top-0 left-0 w-full px-4 py-1.5 text-sm font-bold border-b-3 border-black bg-secondary;
   }
+
+  /* Brand colors for the language title bar (case-insensitive matches).
+     Keep this AFTER the base pre[data-language] rules so it overrides. */
+  .prose pre:is([data-language="js" i], [data-language="javascript" i])::before {
+    background: #f7df1e !important;
+    color: #000;
+  }
+
+  .prose pre:is([data-language="ts" i], [data-language="typescript" i])::before {
+    background: #3178c6 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="jsx" i], [data-language="tsx" i], [data-language="react" i])::before {
+    background: #61dafb !important;
+    color: #111;
+  }
+
+  .prose pre:is([data-language="vue" i])::before {
+    background: #41b883 !important;
+    color: #111;
+  }
+
+  .prose pre:is([data-language="svelte" i])::before {
+    background: var(--color-red) !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="html" i])::before {
+    background: #e34f26 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="css" i])::before {
+    background: var(--color-blue) !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="sass" i], [data-language="scss" i])::before {
+    background: #c6538c !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="bash" i], [data-language="sh" i], [data-language="shell" i], [data-language="zsh" i], [data-language="ini" i], [data-language="conf" i])::before {
+    background: #4EAA25 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="python" i], [data-language="py" i])::before {
+    background: #3776ab !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="go" i], [data-language="golang" i])::before {
+    background: #81ccdf !important;
+    color: #111;
+  }
+
+  .prose pre:is([data-language="rust" i])::before {
+    background: #000 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="php" i])::before {
+    background: #777bb4 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="json" i])::before {
+    background: #252525 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="yaml" i], [data-language="yml" i])::before {
+    background: #d45d61 !important;
+    color: #fff;
+  }
+
+  .prose pre:is([data-language="ini" i], [data-language="conf" i])::before {
+    background: #3e474a !important;
+    color: #fff;
+  }
+
 
 
 
@@ -118,7 +201,7 @@ p {
 
   /* Custom list item markers */
   .prose ul>li::before {
-    @apply content-[''] absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-teal-green border-2 border-black/50;
+    @apply content-[''] absolute left-0 top-3 w-3 h-3 bg-teal-green border-2 border-black/50;
   }
 
   /* Custom ordered list styling */

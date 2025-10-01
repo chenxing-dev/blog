@@ -59,16 +59,16 @@ export function calculateReadTime(content: string) {
 // Get the style based on category
 export const getStyle = (category: string) => {
     switch (category) {
-        case "terminal": return ["bg-purple-500", "border-purple-700"];
+        case "terminal": return ["bg-background"];
         case "desktop": return ["bg-secondary"];
-        case "config": return ["bg-gray-500", "border-gray-700"];
-        case "hardware": return ["bg-yellow-500", "border-yellow-700"];
-        case "programming": return ["bg-green-500", "border-green-700"];
-        case "web-dev": return ["bg-cyan", "border-cyan-700"];
-        case "web-development": return ["bg-cyan", "border-cyan-700"];
-        case "network": return ["bg-teal-500", "border-teal-700"];
-        case "security": return ["bg-purple-500", "border-purple-700"];
-        case "package-management": return ["bg-orange-500", "border-orange-700"];
-        default: return ["bg-gray-500", "border-gray-700"];
+        case "config": return ["bg-green"];
+        case "hardware": return ["bg-primary"];
+        case "programming": return ["bg-teal-green"];
+        case "web-dev": return ["bg-cyan"];
+        case "web-development": return ["bg-cyan"];
+        case "network": return ["bg-teal"];
+        case "security": return ["bg-light-teal"];
+        case "package-management": return ["bg-blue"];
+        default: return ["bg-light-blue"];
     }
 };

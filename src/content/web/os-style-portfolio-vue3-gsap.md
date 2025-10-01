@@ -3,7 +3,7 @@ title: Building my OS-style portfolio site with Vue 3 and GSAP
 description: A technical deep dive into creating an operating system-inspired portfolio website using Vue 3 composition API and GSAP animations
 tags: ["vue 3", "gsap", "typescript", "tailwind css", "web development", "portfolio"]
 category: web-development
-date: 2025-09-27
+date: 2025-09-30
 featured: true
 coverImage: /images/os-portfolio.png
 coverImageCaption: Screenshot of my OS-style portfolio site with draggable windows
@@ -14,15 +14,13 @@ I built an OS-style portfolio with Vue 3 + GSAP and draggable windows.
 - Key ideas: composables for state, GSAP timelines for open/close, and persisted windows via VueUse.
 - Live demo [here](https://chenxing-dev.github.io) | Source [here](https://github.com/chenxing-dev/chenxing-dev.github.io)
 
+---
+
 Stack and versions (at time of writing)
-```- Node: 24.x
+- Node: 24.x
 - Vite: 6.x
 - Vue: 3.5.x
 - TypeScript: 5.x
-- GSAP: 3.13.x
-- vue-draggable-resizable: 3.x
-- @vueuse/core: 13.x
-```
 
 Quickstart
 ```bash
