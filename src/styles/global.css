@@ -10,24 +10,22 @@
   /* Mustard */
   --color-background: #f9f6ee;
   /* Off-white */
-  --color-accent: #2e7d32;
+  --color-green: #2e7d32;
   /* Forest Green */
   --color-blue: #1976d2;
   /* Blue */
+  --color-light-blue: #629ec6;
+  /* Light Blue */
   --color-cyan: #aeeeee;
   /* Light Cyan */
   --color-teal: #4ea9a9;
   /* Teal */
-  --color-yellow: #f4cc65;
-  /* Yellow */
-  --color-red: #d14b3a;
-  /* Red */
-  --color-green: #79b495;
-  /* Green */
-  --color-light-blue: #629ec6;
-  /* Light Blue */
+  --color-light-teal: #75ada1;
+  /* Light Teal */
   --color-orange: #c98c43;
   /* Orange */
+  --color-red: #d14b3a;
+  /* Red */
 
   --shadow-neo: 4px 4px 0px 0px rgba(0, 0, 0, 1);
   --text-shadow-neo:
