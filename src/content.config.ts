@@ -16,6 +16,7 @@ const schema = z.object({
     z.string().url(),
     z.string().startsWith('/'), // root-relative asset in /public
   ])),
+  coverImageCaption: z.optional(z.string()),
 })
 const linuxCollection = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/linux" }),

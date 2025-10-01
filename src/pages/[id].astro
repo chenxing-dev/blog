@@ -27,11 +27,11 @@ const { Content } = await render(post);
   <header>
     <h1
       class="text-2xl md:text-5xl/15 tracking-tight md:tracking-normal font-black bg-light-blue
-      px-4 md:px-6 py-2 border-b-2"
+      px-4 md:px-6 py-2 border-b-3 uppercase"
     >
       {post.data.title}
     </h1>
-    <div class="p-4 pt-2 border-b-2">
+    <div class="p-4 pt-2 border-b-3">
       <time class="mb-1 block">
         Published on
         {
@@ -49,11 +49,23 @@ const { Content } = await render(post);
   </header>
 
   {/* Cover Image */}
-  <img
-    src={post.data.coverImage}
-    alt={post.data.title}
-    class="w-full h-auto border-b-3"
-  />
+  {
+    post.data.coverImage && (
+      <img
+        src={post.data.coverImage}
+        alt={post.data.title}
+        class="mx-auto border-3 border-black shadow-neo max-h-128 object-contain mt-6"
+      />
+    )
+  }
+  {
+    post.data.coverImageCaption && (
+      <p class="text-center italic mt-3">
+        {post.data.coverImageCaption}
+      </p>
+    )
+  }
+
   {/* Post Content */}
   <Prose>
     <Content />

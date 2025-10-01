@@ -4,11 +4,10 @@ slug: raspberry-pi-4b-minimal-setup
 description: "Step-by-step guide to installing Raspberry Pi OS Lite, configuring terminal appearance, and optimizing for headless use"
 tags: ["raspberry pi", "linux", "terminal", "configuration"]
 category: "hardware"
-date: 2025-07-11
+date: 2025-10-01
+coverImage: /images/pi4b-setup.jpeg
+coverImageCaption: "Raspberry Pi 4B with cables connected"
 ---
-
-![Raspberry Pi 4B with cables connected](/pi4b-setup.jpg)  
-<figcaption>Raspberry Pi 4B - perfect for headless server applications</figcaption>
 
 ## Hardware Requirements
 - Raspberry Pi 4B (4GB+ RAM recommended)
