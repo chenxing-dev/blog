@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/Layout.astro";
 import SpotlightCarousel from "../components/SpotlightCarousel.astro";
+import PostGrid from "../components/PostGrid.astro";
 import { getCollection } from "astro:content";
 import { processPost, byDateDesc } from "../lib/postUtils";
 
@@ -11,11 +12,70 @@ const allPosts = [...linuxPosts, ...webDevPosts].sort(byDateDesc);
 // Featured posts logic: either those marked as featured or the latest 2 posts
 let featuredPosts = allPosts.filter((post) => post.data.featured);
 if (featuredPosts.length === 0) featuredPosts = allPosts.slice(0, 2);
+
+// Filter by post.data.category
+const categories = [
+  { key: "all", label: "All", posts: allPosts },
+  { key: "linux", label: "Linux", posts: linuxPosts },
+  { key: "web", label: "Web", posts: webDevPosts },
+];
+
+const buttonStyle =
+  "relative px-4 py-2 text-sm font-bold uppercase tracking-wide " +
+  "bg-white text-black border-2 border-black shadow-neo " +
+  "hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none " +
+  "focus:outline-none " +
+  "data-[active=true]:translate-x-0.5 data-[active=true]:translate-y-0.5 " +
+  "data-[active=true]:bg-light-blue  data-[active=true]:shadow-none ";
 ---
 
 <BaseLayout title="陈刑's Tech Guides" class="px-4 md:px-6">
   {/* Featured Posts (Carousel) */}
   <SpotlightCarousel posts={featuredPosts} />
 
-  {/* TODO: Recent Posts */}
+  {/* Recent Posts (filter by category) */}
+  <section class="my-8">
+    {/* Section Header with Category Tabs */}
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Filter by category</h2>
+      <div
+        role="tablist"
+        aria-label="Filter posts"
+        class="flex flex-wrap gap-2 items-center"
+      >
+        {
+          categories.map((category, index) => (
+            <button
+              type="button"
+              id={`tab-${category.key}`}
+              role="tab"
+              aria-selected={index === 0}
+              aria-controls={`tabpanel-${category.key}`}
+              data-active={index === 0 ? "true" : "false"}
+              data-target={category.key}
+              class={buttonStyle}
+            >
+              {category.label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+    {/* Post Grid */}
+    <div class="mt-6">
+      {
+        categories.map((c, i) => (
+          <div
+            id={`panel-${c.key}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${c.key}`}
+            data-cat={c.key}
+            hidden={i !== 0}
+          >
+            <PostGrid posts={c.posts} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>
