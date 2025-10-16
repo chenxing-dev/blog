@@ -1,22 +1,12 @@
-import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
+import rss from "@astrojs/rss";
 
-interface PostData {
-    title: string;
-    description?: string;
-    date: Date;
-}
 
-interface CollectionPost {
-    id: string;
-    body?: string;
-    data: PostData;
-}
-
-export async function GET(context: { site?: string | undefined }): Promise<Response> {
-    const linux = (await getCollection("linux")) as CollectionPost[];
-    const web = (await getCollection("web")) as CollectionPost[];
-    const posts: CollectionPost[] = [...linux, ...web]
+export async function GET(context: APIContext): Promise<Response> {
+    const linux = await getCollection("linux");
+    const web = await getCollection("web");
+    const posts = [...linux, ...web]
         // filter out drafts or missing dates if necessary
         .filter((p) => !!p.data?.date)
         .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -31,6 +21,8 @@ export async function GET(context: { site?: string | undefined }): Promise<Respo
             link: `/${p.id}`,
             pubDate: p.data.date,
             content: p.body ? String(p.body) : undefined,
+            // Optional: tags
+            categories: p.data?.tags?.map((tag) => String(tag)) ?? [],
         })),
     });
 }
