@@ -18,6 +18,12 @@ const { title, class: className = "", ...attrs } = Astro.props;
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="#" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Your Site's Title"
+      href={new URL("rss.xml", Astro.site)}
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
