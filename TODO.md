@@ -1,5 +1,4 @@
 - [ ] Add visual focus and graphic elements to `index.astro`
-  - [ ] https://www.siteinspire.com for design inspiration.
   - [ ] Featured Spotlight Section
     - [ ] Arch logo/icon + compelling screenshot
     - [ ] Hover effect with title and brief description.
