@@ -1,0 +1,62 @@
+---
+/*
+  Generic SEO + OpenGraph + Twitter meta component.
+  Usage: <Seo title={title} description={desc} url={fullUrl} image={imageUrl} />
+*/
+interface Props {
+    title?: string;
+    description?: string;
+    url?: string; // Canonical URL of the page, defaults to Astro.site
+    image?: string; // image URL for social cards
+    siteName?: string; // site name for social cards
+    twitterCard?: string; // twitter card type, defaults to "summary_large_image"
+}
+
+const {
+    title,
+    description,
+    url,
+    image,
+    siteName,
+    twitterCard = "summary_large_image",
+} = Astro.props as Props;
+
+// Resolve a canonical URL when a relative path is provided
+let canonical: string | undefined = undefined;
+try {
+    if (url) canonical = new URL(url, Astro.site).toString();
+} catch {
+    canonical = url;
+}
+---
+
+<meta name="description" content={description} />
+{canonical && <link rel="canonical" href={canonical} />}
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={siteName} />
+{title && <meta property="og:title" content={title} />}
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+{canonical && <meta property="og:url" content={canonical} />}
+{
+    image && (
+        <meta
+            property="og:image"
+            content={new URL(image, Astro.site).toString()}
+        />
+    )
+}
+
+<!-- Twitter -->
+<meta name="twitter:card" content={twitterCard} />
+{title && <meta name="twitter:title" content={title} />}
+<meta name="twitter:description" content={description} />
+{
+    image && (
+        <meta
+            name="twitter:image"
+            content={new URL(image, Astro.site).toString()}
+        />
+    )
+}

@@ -1,19 +1,9 @@
 ---
 interface Props {
-    appName?: string;
-    themeColor?: string;
     hrefPrefix?: string; // where icons live, usually '/'
 }
-const {
-    appName,
-    themeColor = "#ffffff",
-    hrefPrefix = "/",
-} = Astro.props as Props;
+const { hrefPrefix = "/" } = Astro.props as Props;
 ---
 
 <!-- Favicon & App Icon links -->
 <link rel="icon" type="image/svg+xml" href={`${hrefPrefix}icon.svg`} />
-<link rel="manifest" href={`${hrefPrefix}site.webmanifest`} />
-<meta name="theme-color" content={themeColor} />
-<meta name="application-name" content={appName} />
-<meta name="apple-mobile-web-app-title" content={appName} />

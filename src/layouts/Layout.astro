@@ -2,31 +2,33 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Favicon from "../components/Favicon.astro";
+import Seo from "../components/Seo.astro";
 import "../styles/global.css";
 
 // Frontmatter
 interface Props {
   title: string;
+  description?: string;
   class?: string;
 }
-const { title, class: className = "", ...attrs } = Astro.props;
+const { title, description, class: className = "", ...attrs } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link
       rel="alternate"
       type="application/rss+xml"
-      title="Your Site's Title"
+      title={title}
       href={new URL("rss.xml", Astro.site)}
     />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <Favicon appName={title} />
+    <Favicon />
+    <Seo />
   </head>
   <body class="bg-background text-neutral-900 p-2 md:p-4 min-h-screen">
     <main
