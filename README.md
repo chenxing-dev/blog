@@ -39,11 +39,6 @@ npm run dev
    ```
    View at `http://localhost:4321/blog/`
 
-3. **Build & Deploy**  
-   ```bash
-   npm run deploy
-   ```
-   Auto-publishes to `https://<username>.github.io/blog`
 
 ## Project Structure 📂
 
