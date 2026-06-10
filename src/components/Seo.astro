@@ -11,7 +11,12 @@ interface Props {
   twitterCard?: string; // twitter card type, defaults to "summary_large_image"
 }
 
-const { title, description, url, image } = Astro.props as Props;
+const {
+  title,
+  description,
+  url,
+  image = "/images/thumbnail.png",
+} = Astro.props as Props;
 
 // Resolve a canonical URL when a relative path is provided
 let canonical: string | undefined = undefined;

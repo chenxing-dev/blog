@@ -1,6 +1,6 @@
 # Neobrutalism Style Blog 🚀
 
-![Preview](preview.png)
+![Preview](/public/images/thumbnail.png)
 
 A minimalist-neobrutalism style blog that transforms Markdown notes into a website deployed to GitHub Pages. Built with Astro + TailwindCSS, featuring bold typography, sharp borders, and a vibrant color scheme. 
 
