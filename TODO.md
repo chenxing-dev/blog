@@ -1,7 +1,11 @@
+# TODO List for Personal Blog Development
+
+- [ ] feat: add OpenGraph meta tags (og:title/description, twitter:card) in Layout.astro
+- [ ] chore: update Astro version to 6.4.5
 - [ ] Add visual focus and graphic elements to `index.astro`
   - [ ] Featured Spotlight Section
-    - [ ] Arch logo/icon + compelling screenshot
-    - [ ] Hover effect with title and brief description.
+    - [x] Arch logo/icon + compelling screenshot
+    - [ ] With title and brief description.
   - [ ] Recent Articles Section
     - [ ] Filter articles by tags (e.g., web development, Linux).  
 - [ ] Writings on web development topics in `src/content/web/`.

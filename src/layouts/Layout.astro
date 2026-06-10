@@ -9,9 +9,16 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
+  image?: string; // image URL
   class?: string;
 }
-const { title, description, class: className = "", ...attrs } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  class: className = "",
+  ...attrs
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,6 +26,10 @@ const { title, description, class: className = "", ...attrs } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <Seo title={title} description={description} image={image} />
+    <title>{title}</title>
+    <Favicon />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -26,9 +37,6 @@ const { title, description, class: className = "", ...attrs } = Astro.props;
       href={new URL("rss.xml", Astro.site)}
     />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <Favicon />
-    <Seo />
   </head>
   <body class="bg-background text-neutral-900 p-2 md:p-4 min-h-screen">
     <main
