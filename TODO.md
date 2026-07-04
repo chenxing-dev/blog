@@ -1,5 +1,7 @@
 # TODO List for Personal Blog Development
 
+- [ ] fix: ui styling for `astro-code`
+- [ ] feat: add copy-to-clipboard button for code blocks in `astro-code`
 - [ ] feat: add OpenGraph meta tags (og:title/description, twitter:card) in Layout.astro
 - [ ] chore: update Astro version to 6.4.5
 - [ ] Add visual focus and graphic elements to `index.astro`
