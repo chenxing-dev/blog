@@ -1,6 +1,6 @@
 # TODO List for Personal Blog Development
 
-- [ ] refactor: remove unnecessary CSS overrides for expressive code in `astro.config.mjs`
+- [x] style: remove unused style overrides for expressive code in `astro.config.mjs`
 - [ ] feat: add OpenGraph meta tags (og:title/description, twitter:card) in Layout.astro
 - [ ] chore: update Astro version to v7
 - [ ] Add visual focus and graphic elements to `index.astro`
