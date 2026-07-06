@@ -2,13 +2,12 @@
 
 - [x] style: remove unused style overrides for expressive code in `astro.config.mjs`
 - [x] feat: add OpenGraph meta tags (og:title/description, twitter:card)
-- [ ] chore: update Astro version to v7
+- [x] chore: update Astro version to v7
 - [ ] Add visual focus and graphic elements to `index.astro`
-  - [ ] Featured Spotlight Section
+  - [x] Hero Section
     - [x] Arch logo/icon + compelling screenshot
-    - [ ] With title and brief description.
-  - [ ] Recent Articles Section
-    - [ ] Filter articles by tags (e.g., web development, Linux).  
+    - [x] Add a thin retro-style drop shadow to the headline
+    - [ ] refactor: instead of "Filter by category", implement "Filter by tag" instead
 - [ ] Writings on web development topics in `src/content/web/`.
   - [ ] Building my OS-style portfolio site with Vue 3 and GSAP.
   - [ ] Comparing React, Vue, and Svelte for a small project.

@@ -4,9 +4,10 @@ import { type Post, getStyle } from "../lib/postUtils";
 interface Props {
     index: number;
     post: Post;
+    class?: string;
 }
 
-const { index, post } = Astro.props as Props;
+const { index, post, class: className } = Astro.props as Props;
 
 const [color] = getStyle(post.data.category);
 ---
@@ -14,9 +15,9 @@ const [color] = getStyle(post.data.category);
 <a
     id={`slide-${index}`}
     data-slide-index={index}
-    class="relative group snap-center shrink-0
+    class={`relative group snap-center shrink-0
     w-full md:w-2/3 lg:w-1/2 aspect-16/9 overflow-hidden
-    border-3"
+    border-3 shadow-neo mb-1 ${className}`}
     href={post.url}
 >
     {/* Cover Image */}
