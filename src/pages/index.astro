@@ -73,7 +73,7 @@ const buttonStyle =
             id={`panel-${c.key}`}
             role="tabpanel"
             aria-labelledby={`tab-${c.key}`}
-            data-cat={c.key}
+            data-category={c.key}
             hidden={i !== 0}
           >
             <PostGrid posts={c.posts} />
@@ -83,3 +83,24 @@ const buttonStyle =
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll('[role="tab"]') as NodeListOf<HTMLElement>;
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]') as NodeListOf<HTMLElement>;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.target;
+
+        tabs.forEach((t) => {
+          t.dataset.active = t === tab ? "true" : "false";
+        });
+
+        tabPanels.forEach((panel) => {
+          panel.hidden = panel.dataset.category !== target;
+        });
+      });
+    });
+  });
+</script>
