@@ -8,7 +8,7 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://blog.chenxing-dev/",
+  site: "https://blog.chenxing.dev/",
   base: "/",
   integrations: [
     sitemap(),

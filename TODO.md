@@ -1,7 +1,7 @@
 # TODO List for Personal Blog Development
 
 - [x] style: remove unused style overrides for expressive code in `astro.config.mjs`
-- [ ] feat: add OpenGraph meta tags (og:title/description, twitter:card) in Layout.astro
+- [x] feat: add OpenGraph meta tags (og:title/description, twitter:card)
 - [ ] chore: update Astro version to v7
 - [ ] Add visual focus and graphic elements to `index.astro`
   - [ ] Featured Spotlight Section
