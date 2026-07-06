@@ -70,11 +70,6 @@ p {
   font-family: system-ui, "Noto Color Emoji", sans-serif;
 }
 
-.astro-code {
-  background-color: var(--color-background) !important;
-  @apply pb-3;
-}
-
 @layer utilities {
   /* Styling for inline code */
   .prose code:not(pre code) {
@@ -87,117 +82,230 @@ p {
     content: none !important;
   }
 
-  /* Styling for code blocks with language labels */
-  .prose
-    pre[data-language]:not([data-language="plaintext" i]):not(
-      [data-language="text" i]
-    ):not([data-language="plain" i]):not([data-language="none" i]) {
-    @apply relative pt-10;
+  /* Expressive Code block theming */
+  .prose .expressive-code {
+    @apply my-4;
+    box-shadow: var(--shadow-neo) !important;
+  }
+
+  .prose .expressive-code .frame,
+  .prose .expressive-code pre,
+  .prose .expressive-code .copy button,
+  .prose .expressive-code .copy .feedback {
+    border-radius: 0 !important;
+  }
+
+  .prose .expressive-code .frame {
+    border: 3px solid #000 !important;
+    overflow: hidden;
+  }
+
+  .prose .expressive-code .frame .header {
+    display: none !important;
+  }
+
+  .prose .expressive-code .frame pre {
+    border: 0 !important;
   }
 
   .prose
+    .expressive-code
+    .frame
+    pre[data-language]:not([data-language="plaintext" i]):not(
+      [data-language="text" i]
+    ):not([data-language="plain" i]):not([data-language="none" i])
+    > code {
+    padding-top: calc(var(--ec-codePadBlk) + 2rem) !important;
+  }
+
+  /* Styling for the language label on code blocks */
+  .prose
+    .expressive-code
+    .frame
     pre[data-language]:not([data-language="plaintext" i]):not(
       [data-language="text" i]
     ):not([data-language="plain" i]):not([data-language="none" i])::before {
     content: "<<<" attr(data-language);
-    @apply absolute top-0 left-0 w-full px-4 py-1.5 text-sm font-bold border-b-3 border-black bg-secondary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 0.375rem 1rem;
+    border-bottom: 3px solid #000;
+    background: var(--ec-frm-edTabBarBg);
+    color: var(--ec-frm-edActTabFg);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    pointer-events: none;
   }
 
-  /* Brand colors for the language title bar (case-insensitive matches).
-     Keep this AFTER the base pre[data-language] rules so it overrides. */
+  /* Language-aware frame colors */
   .prose
-    pre:is([data-language="js" i], [data-language="javascript" i])::before {
-    background: #f7df1e !important;
-    color: #000;
-  }
-
-  .prose
-    pre:is([data-language="ts" i], [data-language="typescript" i])::before {
-    background: #3178c6 !important;
-    color: #fff;
-  }
-
-  .prose
-    pre:is(
-      [data-language="jsx" i],
-      [data-language="tsx" i],
-      [data-language="react" i]
-    )::before {
-    background: #61dafb !important;
-    color: #111;
-  }
-
-  .prose pre:is([data-language="vue" i])::before {
-    background: #41b883 !important;
-    color: #111;
-  }
-
-  .prose pre:is([data-language="svelte" i])::before {
-    background: var(--color-red) !important;
-    color: #fff;
-  }
-
-  .prose pre:is([data-language="html" i])::before {
-    background: #e34f26 !important;
-    color: #fff;
-  }
-
-  .prose pre:is([data-language="css" i])::before {
-    background: var(--color-blue) !important;
-    color: #fff;
-  }
-
-  .prose pre:is([data-language="sass" i], [data-language="scss" i])::before {
-    background: #c6538c !important;
-    color: #fff;
+    .expressive-code
+    .frame:has(pre:is([data-language="js" i], [data-language="javascript" i])) {
+    --ec-frm-edTabBarBg: #f7df1e !important;
+    --ec-frm-edActTabBg: #f7df1e !important;
+    --ec-frm-trmTtbBg: #f7df1e !important;
+    --ec-frm-edActTabFg: #000 !important;
+    --ec-frm-trmTtbFg: #000 !important;
+    --ec-frm-trmTtbDotsFg: #000 !important;
   }
 
   .prose
-    pre:is(
-      [data-language="bash" i],
-      [data-language="sh" i],
-      [data-language="shell" i],
-      [data-language="zsh" i],
-      [data-language="ini" i],
-      [data-language="conf" i]
-    )::before {
-    background: #4eaa25 !important;
-    color: #fff;
+    .expressive-code
+    .frame:has(pre:is([data-language="ts" i], [data-language="typescript" i])) {
+    --ec-frm-edTabBarBg: #3178c6 !important;
+    --ec-frm-edActTabBg: #3178c6 !important;
+    --ec-frm-trmTtbBg: #3178c6 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
-  .prose pre:is([data-language="python" i], [data-language="py" i])::before {
-    background: #3776ab !important;
-    color: #fff;
+  .prose
+    .expressive-code
+    .frame:has(
+      pre:is(
+        [data-language="jsx" i],
+        [data-language="tsx" i],
+        [data-language="react" i]
+      )
+    ) {
+    --ec-frm-edTabBarBg: #61dafb !important;
+    --ec-frm-edActTabBg: #61dafb !important;
+    --ec-frm-trmTtbBg: #61dafb !important;
+    --ec-frm-edActTabFg: #111 !important;
+    --ec-frm-trmTtbFg: #111 !important;
+    --ec-frm-trmTtbDotsFg: #111 !important;
   }
 
-  .prose pre:is([data-language="go" i], [data-language="golang" i])::before {
-    background: #81ccdf !important;
-    color: #111;
+  .prose .expressive-code .frame:has(pre[data-language="vue" i]) {
+    --ec-frm-edTabBarBg: #41b883 !important;
+    --ec-frm-edActTabBg: #41b883 !important;
+    --ec-frm-trmTtbBg: #41b883 !important;
+    --ec-frm-edActTabFg: #111 !important;
+    --ec-frm-trmTtbFg: #111 !important;
+    --ec-frm-trmTtbDotsFg: #111 !important;
   }
 
-  .prose pre:is([data-language="rust" i])::before {
-    background: #000 !important;
-    color: #fff;
+  .prose .expressive-code .frame:has(pre[data-language="svelte" i]) {
+    --ec-frm-edTabBarBg: var(--color-red) !important;
+    --ec-frm-edActTabBg: var(--color-red) !important;
+    --ec-frm-trmTtbBg: var(--color-red) !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
-  .prose pre:is([data-language="php" i])::before {
-    background: #777bb4 !important;
-    color: #fff;
+  .prose .expressive-code .frame:has(pre[data-language="html" i]) {
+    --ec-frm-edTabBarBg: #e34f26 !important;
+    --ec-frm-edActTabBg: #e34f26 !important;
+    --ec-frm-trmTtbBg: #e34f26 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
-  .prose pre:is([data-language="json" i])::before {
-    background: #252525 !important;
-    color: #fff;
+  .prose .expressive-code .frame:has(pre[data-language="css" i]) {
+    --ec-frm-edTabBarBg: var(--color-blue) !important;
+    --ec-frm-edActTabBg: var(--color-blue) !important;
+    --ec-frm-trmTtbBg: var(--color-blue) !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
-  .prose pre:is([data-language="yaml" i], [data-language="yml" i])::before {
-    background: #d45d61 !important;
-    color: #fff;
+  .prose
+    .expressive-code
+    .frame:has(pre:is([data-language="sass" i], [data-language="scss" i])) {
+    --ec-frm-edTabBarBg: #c6538c !important;
+    --ec-frm-edActTabBg: #c6538c !important;
+    --ec-frm-trmTtbBg: #c6538c !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
-  .prose pre:is([data-language="ini" i], [data-language="conf" i])::before {
-    background: #3e474a !important;
-    color: #fff;
+  .prose
+    .expressive-code
+    .frame:has(
+      pre:is(
+        [data-language="bash" i],
+        [data-language="sh" i],
+        [data-language="shell" i],
+        [data-language="zsh" i],
+        [data-language="ini" i],
+        [data-language="conf" i]
+      )
+    ) {
+    --ec-frm-edTabBarBg: #4eaa25 !important;
+    --ec-frm-edActTabBg: #4eaa25 !important;
+    --ec-frm-trmTtbBg: #4eaa25 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
+  }
+
+  .prose
+    .expressive-code
+    .frame:has(pre:is([data-language="python" i], [data-language="py" i])) {
+    --ec-frm-edTabBarBg: #3776ab !important;
+    --ec-frm-edActTabBg: #3776ab !important;
+    --ec-frm-trmTtbBg: #3776ab !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
+  }
+
+  .prose
+    .expressive-code
+    .frame:has(pre:is([data-language="go" i], [data-language="golang" i])) {
+    --ec-frm-edTabBarBg: #81ccdf !important;
+    --ec-frm-edActTabBg: #81ccdf !important;
+    --ec-frm-trmTtbBg: #81ccdf !important;
+    --ec-frm-edActTabFg: #111 !important;
+    --ec-frm-trmTtbFg: #111 !important;
+    --ec-frm-trmTtbDotsFg: #111 !important;
+  }
+
+  .prose .expressive-code .frame:has(pre[data-language="rust" i]) {
+    --ec-frm-edTabBarBg: #000 !important;
+    --ec-frm-edActTabBg: #000 !important;
+    --ec-frm-trmTtbBg: #000 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
+  }
+
+  .prose .expressive-code .frame:has(pre[data-language="php" i]) {
+    --ec-frm-edTabBarBg: #777bb4 !important;
+    --ec-frm-edActTabBg: #777bb4 !important;
+    --ec-frm-trmTtbBg: #777bb4 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
+  }
+
+  .prose .expressive-code .frame:has(pre[data-language="json" i]) {
+    --ec-frm-edTabBarBg: #252525 !important;
+    --ec-frm-edActTabBg: #252525 !important;
+    --ec-frm-trmTtbBg: #252525 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
+  }
+
+  .prose
+    .expressive-code
+    .frame:has(pre:is([data-language="yaml" i], [data-language="yml" i])) {
+    --ec-frm-edTabBarBg: #d45d61 !important;
+    --ec-frm-edActTabBg: #d45d61 !important;
+    --ec-frm-trmTtbBg: #d45d61 !important;
+    --ec-frm-edActTabFg: #fff !important;
+    --ec-frm-trmTtbFg: #fff !important;
+    --ec-frm-trmTtbDotsFg: #fff !important;
   }
 
   /* Blockquote customizations */
