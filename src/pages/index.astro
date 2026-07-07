@@ -13,20 +13,40 @@ const allPosts = [...linuxPosts, ...webDevPosts].sort(byDateDesc);
 let featuredPosts = allPosts.filter((post) => post.data.featured);
 if (featuredPosts.length === 0) featuredPosts = allPosts.slice(0, 2);
 
-// Filter by post.data.category
-const categories = [
-  { key: "all", label: "All", posts: allPosts },
-  { key: "linux", label: "Linux", posts: linuxPosts },
-  { key: "web", label: "Web", posts: webDevPosts },
-];
+const toTagKey = (tag: string) => tag.trim().toLowerCase();
 
-const buttonStyle =
-  "relative px-4 py-2 text-sm font-bold uppercase tracking-wide " +
-  "bg-white text-black border-2 border-black shadow-neo " +
-  "hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none " +
-  "focus:outline-none " +
-  "data-[active=true]:translate-x-0.5 data-[active=true]:translate-y-0.5 " +
-  "data-[active=true]:bg-light-blue  data-[active=true]:shadow-none ";
+const postsByTag = new Map<
+  string,
+  { key: string; label: string; posts: typeof allPosts }
+>();
+
+allPosts.forEach((post) => {
+  (post.data.tags ?? []).forEach((label: string) => {
+    const tag = toTagKey(label);
+    if (!tag) return;
+
+    let posts = postsByTag.get(tag);
+    if (!posts) {
+      posts = { key: tag, label, posts: [] };
+      postsByTag.set(tag, posts);
+    }
+
+    if (!posts.posts.includes(post)) {
+      posts.posts.push(post);
+    }
+  });
+});
+
+const tagFilters = [
+  { key: "all", label: "All", posts: allPosts },
+  ...Array.from(postsByTag.values())
+    .sort((a, b) => {
+      const countDiff = b.posts.length - a.posts.length;
+      if (countDiff !== 0) return countDiff;
+      return a.label.localeCompare(b.label, undefined, { sensitivity: "base" });
+    })
+    .slice(0, 16),
+];
 ---
 
 <BaseLayout
@@ -37,46 +57,65 @@ const buttonStyle =
   {/* Featured Posts (Carousel) */}
   <SpotlightCarousel posts={featuredPosts} />
 
-  {/* Recent Posts (filter by category) */}
+  {/* Recent Posts (filter by tag) */}
   <section class="my-8">
-    {/* Section Header with Category Tabs */}
+    {/* Section Header with Tag Tabs */}
     <div>
-      <h2 class="text-2xl font-semibold mb-4">Filter by category</h2>
-      <div
-        role="tablist"
-        aria-label="Filter posts"
-        class="flex flex-wrap gap-2 items-center"
-      >
-        {
-          categories.map((category, index) => (
-            <button
-              type="button"
-              id={`tab-${category.key}`}
-              role="tab"
-              aria-selected={index === 0}
-              aria-controls={`tabpanel-${category.key}`}
-              data-active={index === 0 ? "true" : "false"}
-              data-target={category.key}
-              class={buttonStyle}
-            >
-              {category.label}
-            </button>
-          ))
-        }
+      <h2 class="text-2xl font-semibold mb-2 lg:mb-4">Filter by tag</h2>
+      <div class="relative w-full lg:max-w-6xl xl:max-w-7xl" data-scroll>
+        <button
+          type="button"
+          class="hidden lg:hidden absolute -left-2 z-20 h-8 w-6 items-center justify-center bg-primary border-2 border-black shadow-[3px_3px_0_black,6px_-4px_0_white,6px_4px_0_white] text-sm font-black"
+          data-scroll-arrow="left"
+          aria-label="Scroll tags left"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          class="hidden lg:hidden absolute -right-2 z-20 h-8 w-6 items-center justify-center bg-primary border-2 border-black shadow-[3px_3px_0_black,-4px_-4px_0_white,-4px_4px_0_white] text-sm font-black"
+          data-scroll-arrow="right"
+          aria-label="Scroll tags right"
+        >
+          →
+        </button>
+        <div
+          role="tablist"
+          aria-label="Filter posts"
+          data-scroll-container
+          class="flex w-full flex-nowrap gap-2 items-center overflow-x-auto pb-2 px-0.5 lg:flex-wrap lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        >
+          {
+            tagFilters.map((tagFilter, index) => (
+              <button
+                type="button"
+                id={`tab-${tagFilter.key}`}
+                role="tab"
+                aria-selected={index === 0}
+                aria-controls={`panel-${tagFilter.key}`}
+                data-active={index === 0 ? "true" : "false"}
+                data-target={tagFilter.key}
+                class="relative px-2.5 py-1.5 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 text-black text-xs sm:text-sm font-bold uppercase tracking-normal sm:tracking-wide flex shrink-0 bg-white border-2 border-black shadow-neo hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus:outline-none data-[active=true]:translate-x-0.5 data-[active=true]:translate-y-0.5 data-[active=true]:bg-light-blue data-[active=true]:shadow-none"
+              >
+                {tagFilter.label}
+              </button>
+            ))
+          }
+        </div>
       </div>
     </div>
     {/* Post Grid */}
-    <div class="mt-6">
+    <div class="mt-2 lg:mt-6">
       {
-        categories.map((c, i) => (
+        tagFilters.map((filter, i) => (
           <div
-            id={`panel-${c.key}`}
+            id={`panel-${filter.key}`}
             role="tabpanel"
-            aria-labelledby={`tab-${c.key}`}
-            data-category={c.key}
+            aria-labelledby={`tab-${filter.key}`}
+            data-tag={filter.key}
             hidden={i !== 0}
           >
-            <PostGrid posts={c.posts} />
+            <PostGrid posts={filter.posts} />
           </div>
         ))
       }
@@ -86,20 +125,71 @@ const buttonStyle =
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const tabs = document.querySelectorAll('[role="tab"]') as NodeListOf<HTMLElement>;
-    const tabPanels = document.querySelectorAll('[role="tabpanel"]') as NodeListOf<HTMLElement>;
-
+    const tabs = document.querySelectorAll(
+      '[role="tab"]',
+    ) as NodeListOf<HTMLElement>;
+    const tabPanels = document.querySelectorAll(
+      '[role="tabpanel"]',
+    ) as NodeListOf<HTMLElement>;
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const target = tab.dataset.target;
-
         tabs.forEach((t) => {
           t.dataset.active = t === tab ? "true" : "false";
         });
-
         tabPanels.forEach((panel) => {
-          panel.hidden = panel.dataset.category !== target;
+          panel.hidden = panel.dataset.tag !== target;
         });
+      });
+    });
+
+    const scrollAmount = 180; // Adjust this value to control the scroll distance
+    const scrollWrappers = document.querySelectorAll(
+      "[data-scroll]",
+    ) as NodeListOf<HTMLElement>;
+
+    scrollWrappers.forEach((wrapper) => {
+      const scroller = wrapper.querySelector(
+        "[data-scroll-container]",
+      ) as HTMLElement | null;
+      const leftArrow = wrapper.querySelector(
+        '[data-scroll-arrow="left"]',
+      ) as HTMLButtonElement | null;
+      const rightArrow = wrapper.querySelector(
+        '[data-scroll-arrow="right"]',
+      ) as HTMLButtonElement | null;
+
+      if (!scroller || !leftArrow || !rightArrow) return;
+
+      // Show or hide arrows based on scroll position
+      const updateArrows = () => {
+        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+        const hasOverflow = maxScroll > 1;
+
+        if (!hasOverflow) {
+          leftArrow.classList.add("hidden");
+          rightArrow.classList.add("hidden");
+          return;
+        }
+
+        const atLeftEdge = scroller.scrollLeft <= 0;
+        const atRightEdge = scroller.scrollLeft >= maxScroll - 1;
+
+        leftArrow.classList.toggle("hidden", atLeftEdge);
+        rightArrow.classList.toggle("hidden", atRightEdge);
+      };
+
+      updateArrows();
+      scroller.addEventListener("scroll", () => updateArrows(), {
+        passive: true,
+      });
+      window.addEventListener("resize", () => updateArrows());
+
+      leftArrow?.addEventListener("click", () => {
+        scroller.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      });
+      rightArrow?.addEventListener("click", () => {
+        scroller.scrollBy({ left: scrollAmount, behavior: "smooth" });
       });
     });
   });

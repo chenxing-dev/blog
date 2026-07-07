@@ -7,7 +7,16 @@
   - [x] Hero Section
     - [x] Arch logo/icon + compelling screenshot
     - [x] Add a thin retro-style drop shadow to the headline
-    - [ ] refactor: instead of "Filter by category", implement "Filter by tag" instead
+  - [x] refactor: replace "Filter by category" with "Filter by tag"
+      - [x] refactor: replace `categories` with a tag-derived structure from `allPosts` using `post.data.tags`
+      - [x] fix: update tab header text to "Filter by tag" and render dynamic tabs plus a default "All" tab
+      - [x] refactor: update tab panels to use tag keys
+      - [x] style: tag ordering by post count, with "All" tab first, then descending order of tag frequency then alphabetical order for equal counts
+      - [x] style: update taglist container styles to use small-screen horizontal scroll and larger-screen wrap behavior
+      - [x] style: add breakpost-dependent max-width wrapper to cap line length on wide displays
+      - [x] style: responsive button padding/text/tracking for smaller viewports
+      - [x] style: add arrow indicators for horizontal scroll on small screens
+  - [ ] style: fix responsive layout
 - [ ] Writings on web development topics in `src/content/web/`.
   - [ ] Building my OS-style portfolio site with Vue 3 and GSAP.
   - [ ] Comparing React, Vue, and Svelte for a small project.
