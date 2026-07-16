@@ -136,6 +136,7 @@ const tagFilters = [
         const target = tab.dataset.target;
         tabs.forEach((t) => {
           t.dataset.active = t === tab ? "true" : "false";
+          t.setAttribute("aria-selected", t === tab ? "true" : "false");
         });
         tabPanels.forEach((panel) => {
           panel.hidden = panel.dataset.tag !== target;
